@@ -18,4 +18,10 @@ public class JobhunterController {
 		
 		return "/jobhunter/Resume";
 	}
+	
+	@RequestMapping("/mypage")
+	public String myPage() {
+		
+		return "/jobhunter/MyPage";
+	}
 }

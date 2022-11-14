@@ -12,4 +12,6 @@ public class RecruiterController {
 		
 		return "/recruiter/Job_search";
 	}
+	
+	
 }

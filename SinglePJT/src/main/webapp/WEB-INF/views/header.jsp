@@ -35,10 +35,11 @@
 	     text-align: center;
 	     padding-top: 6px;
 	   }
+
   </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100 min-vh-100 pt-5">
 
   <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center">
@@ -72,15 +73,11 @@
           <li><a href="about.html">채용정보</a></li>
           <li><a href="services.html">구인정보</a></li>
           <li><a href="portfolio.html">업체정보</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="/jobhunter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">내정보</a></li>
+              <li><a href="#">이력서 관리</a></li>
+              <li><a href="#">즐겨찾기</a></li>
             </ul>
           </li>
           <li><a href="/main/login">Login</a></li>
