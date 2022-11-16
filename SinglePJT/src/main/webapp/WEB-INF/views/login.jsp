@@ -40,7 +40,7 @@
   	function ch_reg() {
   		let ch = $('input[name=select]:checked').val();
   		if(ch=="1"){
-  			location.href='/jobhunter/register'
+  			location.href='/main/register'
   		}else if(ch=="2"){
   			location.href='/recruiter/register'  			  			
   		}

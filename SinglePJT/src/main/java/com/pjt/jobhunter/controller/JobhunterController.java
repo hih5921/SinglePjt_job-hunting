@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/jobhunter")
 public class JobhunterController {
 
-	@RequestMapping("/register")
-	public String jh_register() {
-		
-		return "/jobhunter/jobhunter_reg";
-	}
 	
 	@RequestMapping("/resume")
 	public String jh_resume() {

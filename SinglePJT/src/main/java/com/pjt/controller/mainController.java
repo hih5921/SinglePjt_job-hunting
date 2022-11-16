@@ -18,4 +18,10 @@ public class mainController {
 		
 		return "/login";
 	}
+	
+	@RequestMapping("/register")
+	public String jh_register() {
+		
+		return "/register";
+	}
 }
