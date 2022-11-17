@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Eterna Bootstrap Template - Index</title>
+  <title>Workaholic</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,7 +62,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1><a href="/main/home">Eterna</a></h1>
+        <h1><a href="/main/home">Workaholic</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="${pageContext.request.contextPath}/resources/assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
