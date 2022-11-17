@@ -8,7 +8,12 @@
 		insert into tbl_user(user_id,user_pw,user_name,user_email,user_check) values(#{user_id},#{user_pw},#{user_name},#{user_email},#{user_check})
 	</insert>
 
-	<select id="checkID">
-		select count(*) tbl_user where user_id=#{user_id} 
+	<select id="checkID" resultType="int">
+		select count(*) from tbl_user where user_id=#{user_id} 
 	</select>
+	
+	<select id="login" resultType="int">
+		select count(*) from tbl_user where user_id=#{user_id} and user_pw=#{user_pw} 
+	</select>
+	
 </mapper>

@@ -6,8 +6,8 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-lg-5" style="margin: 0 auto;" id="reg_form">
-					<form action="/main/register" method="post" >
+				<div class="col-lg-5" style="margin: 0 auto;" >
+					<form action="/main/register" method="post" id="reg_form">
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디">
@@ -18,23 +18,25 @@
 						</div>
 
 						<div class="col-md-6 form-group mt-3" style="justify-content: center;">
-							<input type="password" class="form-control" name="user_pw" id="pw" placeholder="패스워드">
+							<input type="password" class="form-control" name="user_pw" id="user_pw" placeholder="패스워드">
 						</div>
 						<div class="col-md-6 form-group mt-3">
 							<input type="password" class="form-control"  id="pw_ch" placeholder="패스워드 확인">
 
 						</div>
 						<div class="col-md-6 form-group mt-3">
-							<input type="text" class="form-control" name="user_name" id="name" placeholder="이름">
+							<input type="text" class="form-control" name="user_name" id="user_name" placeholder="이름">
 						</div>
 						<div class="col-md-6 form-group mt-3">
-							<input type="email" class="form-control" name="user_email" id="email" placeholder="Email">
+							<input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email">
 						</div>
-
+						<input type="radio" name="user_check" id="jobhunter" class="mt-3" style="margin: 0% 2% 0 30%;" value="1">구직자
+              			<input type="radio" name="user_check" id="recruiter" class="mt-3" style="margin: 0 2% 0 10%;" value="2">구인자
 
 						<div class="text-center col-md-3 mt-3" style="margin: 0 auto;">
 							<input type="button" name="name" class="form-control" id="name" value="회원가입" onclick="Check()">
 						</div>
+						
 					</form>
 				</div>
 
@@ -49,14 +51,14 @@
 
 <script>
 function Check(){
-	if(!$("#id").attr("readonly")){
+	if(!$("#user_id").attr("readonly")){
 		alert("중복체크를 확인해주세요.");
-	}else if($("#pw").val().length <1){
+	}else if($("#user_pw").val().length <1){
 		alert("비밀번호를 입력해 주세요");
-	}else if($("#pw").val() != $("#pw_ch").val()){
+	}else if($("#user_pw").val() != $("#pw_ch").val()){
 		alert("비밀번호 확인란을 확인하세요");
 		$("#pw_ch").focus(); 
-	}else if($("#email").val().length <1){
+	}else if($("#user_email").val().length <1){
 		alert("email을 입력해 주세요");
 	}else if(confirm("회원가입 하시겠습니까?")){
 		$("#reg_form").submit();
@@ -70,7 +72,7 @@ function idCheck(){
 		var user_id = {
 			"user_id" : id
 		}; //json 
-		if ($("#id").val().length < 4) {
+		if ($("#user_id").val().length < 4) {
 			alert("아이디는 네 글자 이상입니다.");
 		} else {
 			$.ajax({

@@ -19,7 +19,13 @@ public class mainServiceImpl implements mainService{
 	
 	@Override
 	public int checkID(String user_id) {
-		
+		System.out.println("service / "+user_id);
 		return mm.checkID(user_id);
+	}
+	
+	@Override
+	public int login(UserVO vo) {
+		
+		return mm.login(vo);
 	}
 }

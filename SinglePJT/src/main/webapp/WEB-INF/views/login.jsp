@@ -19,8 +19,7 @@
                   <input type="password" class="form-control" name="password" id="password" placeholder="패스워드" >
                 </div>
 
-              <input type="radio" name="select" id="jobhunter" class="mt-3" style="margin: 0% 2% 0 30%;" value="1">구직자
-              <input type="radio" name="select" id="recruiter" class="mt-3" style="margin: 0 2% 0 10%;" value="2">구인자
+              
               
               <div class="row">
               <div class="text-center col-md-3 mt-3" style="margin: 0 2% 0 24%;"><input type="button" name="reg" class="form-control" id="reg" value="회원가입" onclick="ch_reg()"></div>
@@ -38,12 +37,8 @@
   </main><!-- End #main -->
   <script>
   	function ch_reg() {
-  		let ch = $('input[name=select]:checked').val();
-  		if(ch=="1"){
-  			location.href='/main/register'
-  		}else if(ch=="2"){
-  			location.href='/recruiter/register'  			  			
-  		}
-	}
+  		
+  		location.href='/main/register'
+  	}
   </script>
 <%@include file="footer.jsp"%>

@@ -8,4 +8,5 @@ import com.pjt.command.UserVO;
 public interface mainMapper {
 	public void addUser(UserVO vo);
 	public int checkID(String user_id);
+	public int login(UserVO vo);
 }
