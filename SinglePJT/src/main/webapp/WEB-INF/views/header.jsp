@@ -73,14 +73,35 @@
           <li><a href="about.html">채용정보</a></li>
           <li><a href="services.html">구인정보</a></li>
           <li><a href="portfolio.html">업체정보</a></li>
-          <li class="dropdown"><a href="/jobhunter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">내정보</a></li>
-              <li><a href="#">이력서 관리</a></li>
-              <li><a href="#">즐겨찾기</a></li>
-            </ul>
-          </li>
-          <li><a href="/main/login">Login</a></li>
+          
+          <c:choose>
+	          <c:when test="${sessionScope.user_check eq '1' }">
+		          <li class="dropdown"><a href="/jobhunter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
+		            <ul>
+		              <li><a href="#">내정보</a></li>
+		              <li><a href="#">이력서 관리</a></li>
+		              <li><a href="#">즐겨찾기</a></li>
+		            </ul>
+		          </li>
+	          </c:when>
+	          
+	           <c:when test="${sessionScope.user_check eq '2' }">
+		          <li class="dropdown"><a href="/recruiter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
+		            <ul>
+		              <li><a href="#">내정보</a></li>
+		              <li><a href="#">업체정보</a></li>
+		              <li><a href="#">즐겨찾기</a></li>
+		            </ul>
+		          </li>
+	          </c:when>
+          
+          </c:choose>
+          <c:if test="${empty sessionScope.user_id }">
+          	<li><a href="/main/login">Login</a></li>
+          </c:if>
+          <c:if test="${!empty sessionScope.user_id }">
+          	<li><a href="/main/logout">Logout</a></li>
+          </c:if>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

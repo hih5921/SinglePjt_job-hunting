@@ -25,7 +25,6 @@ public class mainController {
 	
 	@RequestMapping("/home")
 	public String main() {
-		
 		return "/home";
 	}
 	
@@ -38,8 +37,9 @@ public class mainController {
 	@PostMapping("/login")
 	public String login(UserVO vo, HttpSession session,RedirectAttributes RA) {
 		if(ms.login(vo)==1) {
-			session.setAttribute("id", vo.getUser_id());
-			return "/home";
+			session.setAttribute("user_id", vo.getUser_id());
+			session.setAttribute("user_check", vo.getUser_check());
+			return "redirect:/main/home";
 		}else {
 			RA.addFlashAttribute("msg", "아이디 비밀번호를 확인해주세요");
 			return "redirect:/main/login";
@@ -47,9 +47,14 @@ public class mainController {
 		
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "home";
+	}
+	
 	@GetMapping("/register")
 	public String register() {
-		
 		return "/register";
 	}
 	

@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="login" resultType="int">
-		select count(*) from tbl_user where user_id=#{user_id} and user_pw=#{user_pw} 
+		select count(*) from tbl_user where user_id=#{user_id} and user_pw=#{user_pw} and user_check=#{user_check} 
 	</select>
 	
 </mapper>
