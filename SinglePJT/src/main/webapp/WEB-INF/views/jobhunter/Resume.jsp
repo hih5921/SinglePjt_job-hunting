@@ -11,7 +11,7 @@
        <div  style="width:120px; height:150px; border:1px solid black; float:left; align-items: center;  margin-right: 3%;">
 	         	<img  alt="" src="" >이미지
 	      	</div>
-      
+
          <div class="row " style="height: 40px; ">
             <label  style="border: 2px solid #888; width: 10%;">이름</label>
             <input type="text" class=" bg-light" style="border: 2px solid #888; width: 30%;"/>
@@ -178,6 +178,11 @@
             <input type="text" class="col-5 bg-light" style="border: 2px solid #888;"/>
          </div>
          <br><br><br>
+         <div class="row">
+	         <div class="col-md-2 mt-1" style="margin: 0 2% 0 24%;"><input type="button" class="form-control" value="취소" onclick="location.href='mypage'"></div>
+	         <div class="col-md-2 mt-1" ><input type="button" name="addResume" class="form-control" id="log" value="등록" onclick=""></div>
+         </div>
+         <br>
       </div>
          
          

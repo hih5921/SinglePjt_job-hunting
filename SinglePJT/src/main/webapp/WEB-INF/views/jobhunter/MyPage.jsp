@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-lg-4 mt-4 mt-md-0" style="width: 30%;">
             <div class="icon-box">
-              <div class="icon" ><i class="bx bxl-dribbble"></i></div>
+              <div class="icon" ><i class="bx bx-user"></i></div>
               <h4><a href="">내정보</a></h4>
               
             </div>
@@ -38,7 +38,7 @@
 			
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <div class="icon"><i class="bx bx-star"></i></div>
               <h4><a href="">즐겨찾기</a></h4>
             </div>
           </div>
