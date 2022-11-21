@@ -35,6 +35,13 @@
 	     text-align: center;
 	     padding-top: 6px;
 	   }
+	   
+	   .input-file-button{
+  padding: 6px 25px;
+  background-color:silver;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
 
   </style>
 </head>

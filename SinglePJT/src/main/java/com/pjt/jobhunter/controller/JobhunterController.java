@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pjt.command.ImgVO;
+import com.pjt.command.Picture_ImgVO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -48,7 +48,7 @@ public class JobhunterController {
 	
 	// 등록한 파일 폴더에 저장
 		@PostMapping(value = "uploadFile", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<ImgVO>> uploadFile(MultipartFile uploadFile) {
+		public ResponseEntity<List<Picture_ImgVO>> uploadFile(MultipartFile uploadFile) {
 			// 저장 위치
 			String uploadFolder = "C:\\upload";
 
@@ -64,7 +64,7 @@ public class JobhunterController {
 			}
 
 			if (!type.startsWith("image")) {
-				List<ImgVO> list = null;
+				List<Picture_ImgVO> list = null;
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 			}
 			
@@ -81,10 +81,10 @@ public class JobhunterController {
 			}
 
 			// 이미저 정보 담는 객체 
-			List<ImgVO> list = new ArrayList<>();
+			List<Picture_ImgVO> list = new ArrayList<>();
 			
 			// 이미지 정보 객체 
-			ImgVO vo = new ImgVO();
+			Picture_ImgVO vo = new Picture_ImgVO();
 			
 			// 파일 이름 
 			String uploadFileName = uploadFile.getOriginalFilename();
@@ -130,7 +130,7 @@ public class JobhunterController {
 			}
 			
 			list.add(vo);
-			ResponseEntity<List<ImgVO>> result = new ResponseEntity<List<ImgVO>>(list, HttpStatus.OK);
+			ResponseEntity<List<Picture_ImgVO>> result = new ResponseEntity<List<Picture_ImgVO>>(list, HttpStatus.OK);
 			return result;
 
 		}
