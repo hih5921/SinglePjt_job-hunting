@@ -33,7 +33,7 @@
             <input type="text" class="col-7 bg-light" style="border: 2px solid #888; width:70%;"id="address" name="address"/>
          </div>
          
-         <div  style="  float:left; align-items: center;  padding-left: 7px;">
+         <div  style="  float:left; align-items: center;  padding-left: 8px;">
 	       	<label class="input-file-button small" for="input-file">사진첨부<input type="file" id="input-file" style="display: none" name="uploadFile" /></label>
 	    </div>
 	    
@@ -185,12 +185,125 @@
          <br><br><br>
          <div class="row">
 	         <div class="col-md-2 mt-1" style="margin: 0 2% 0 24%;"><input type="button" class="form-control" value="취소" onclick="location.href='mypage'"></div>
-	         <div class="col-md-2 mt-1" ><input type="button" name="addResume" class="form-control" id="log" value="등록" onclick=""></div>
+	         <div class="col-md-2 mt-1" ><input type="button" name="addResume" class="form-control" id="log" value="등록" onclick="test()"></div>
          </div>
          <br>
       </div>
 <%@include file="../footer.jsp"%>         
 <script>
+/*json 만들기*/
+ 
+ 
+function test() {
+	let resume_info = {
+			p_info :{
+				name:$('input[name="name"]').val(),
+				name_eng:$('input[name="name_eng"]').val(),
+				birth:$('input[name="birth"]').val(),
+				phon:$('input[name="phon"]').val(),
+				email:$('input[name="email"]').val(),
+				address:$('input[name="address"]').val()
+			},
+			m_info:{
+				m_check:$('input[name="m_check"]').val(),
+				m_depa:$('input[name="m_depa"]').val(),
+				m_period:$('input[name="m_period"]').val()
+			},
+			
+			s_info:[
+				{
+					s_period:$('input[name="s_period1"]').val(),
+					s_name:$('input[name="s_name1"]').val(),
+					s_major:$('input[name="s_major1"]').val(),
+					s_check:$('input[name="s_check1"]').val()
+				},
+				{
+					s_period:$('input[name="s_period2"]').val(),
+					s_name:$('input[name="s_name2"]').val(),
+					s_major:$('input[name="s_major2"]').val(),
+					s_check:$('input[name="s_check2"]').val()
+				}
+			],
+			
+			c_info:[
+				{
+					c_period:$('input[name="c_period1"]').val(),
+					c_name:$('input[name="c_name1"]').val(),
+					c_position:$('input[name="c_position1"]').val(),
+					c_task:$('input[name="c_task1"]').val()
+					
+				},
+				{
+					c_period:$('input[name="c_period2"]').val(),
+					c_name:$('input[name="c_name2"]').val(),
+					c_position:$('input[name="c_position2"]').val(),
+					c_task:$('input[name="c_task2"]').val()
+				}
+			],
+			
+			certi_info:[
+				{
+					certi_date:$('input[name="certi_date1"]').val(),
+					certi_name:$('input[name="certi_name1"]').val(),
+					certi_rating:$('input[name="certi_rating1"]').val(),
+					certi_place:$('input[name="certi_place1"]').val()
+				},
+				{
+					certi_date:$('input[name="certi_date2"]').val(),
+					certi_name:$('input[name="certi_name2"]').val(),
+					certi_rating:$('input[name="certi_rating2"]').val(),
+					certi_place:$('input[name="certi_place2"]').val()
+				}
+			],
+			edu_info:[
+				{
+					edu_date:$('input[name="edu_date1"]').val(),
+					edu_course:$('input[name="edu_course1"]').val(),
+					edu_place:$('input[name="edu_place1"]').val(),
+					edu_content:$('input[name="edu_content1"]').val()
+				},
+				{
+					edu_date:$('input[name="edu_date2"]').val(),
+					edu_course:$('input[name="edu_course2"]').val(),
+					edu_place:$('input[name="edu_place2"]').val(),
+					edu_content:$('input[name="edu_content2"]').val()
+				}
+			],
+			oa_info:{
+				word:$('input[name="word"]').val(),
+				ppt:$('input[name="ppt"]').val(),
+				excel:$('input[name="excel"]').val(),
+				web:$('input[name="web"]').val()
+			},
+			skill_info:[
+				{
+					skill_field:$('input[name="skill_field1"]').val(),
+					skill_content:$('input[name="skill_content1"]').val(),
+					skill_detaile:$('input[name="skill_detaile1"]').val()
+				},
+				{
+					skill_field:$('input[name="skill_field2"]').val(),
+					skill_content:$('input[name="skill_content2"]').val(),
+					skill_detaile:$('input[name="skill_detaile2"]').val()
+				},
+				{
+					skill_field:$('input[name="skill_field3"]').val(),
+					skill_content:$('input[name="skill_content3"]').val(),
+					skill_detaile:$('input[name="skill_detaile3"]').val()
+				},
+				{
+					skill_field:$('input[name="skill_field4"]').val(),
+					skill_content:$('input[name="skill_content4"]').val(),
+					skill_detaile:$('input[name="skill_detaile4"]').val()
+				}
+			]
+			
+	}
+	console.log(resume_info)
+}
+
+
+
 /* 이미지 업로드 */
 $("input[type='file']").on("change", function(e) {
 	let formData = new FormData();
