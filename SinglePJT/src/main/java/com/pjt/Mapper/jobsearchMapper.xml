@@ -3,8 +3,9 @@
 
 
 <mapper namespace="com.pjt.Mapper.jobsearchMapper">
-	<insert id="addJobSearch" parameterType="com.pjt.command.JobsearchVO">
-		insert into jobsearch(jobsearch_title,jobsearch_main) values(#{jobsearch_title},#{jobsearch_main,typeHandler=com.pjt.JobsearchVO.JSONTypeHandler})
+	<insert id="addJobSearch" >
+		insert into tbl_jobsearch(jobsearch_title,jobsearch_main) values(#{jobsearch_title},#{jobsearch_main})
 	</insert>
 	
 </mapper>
+
