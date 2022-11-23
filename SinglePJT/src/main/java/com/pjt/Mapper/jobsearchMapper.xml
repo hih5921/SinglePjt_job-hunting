@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.pjt.Mapper.jobsearchMapper">
+	<insert id="addJobSearch" parameterType="com.pjt.command.JobsearchVO">
+		insert into jobsearch(jobsearch_title,jobsearch_main) values(#{jobsearch_title},#{jobsearch_main,typeHandler=com.pjt.JobsearchVO.JSONTypeHandler})
+	</insert>
+	
+</mapper>

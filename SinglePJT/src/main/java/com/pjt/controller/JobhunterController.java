@@ -1,4 +1,4 @@
-package com.pjt.jobhunter.controller;
+package com.pjt.controller;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
