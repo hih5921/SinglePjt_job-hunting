@@ -46,8 +46,8 @@
                type="file" id="input-file" style="display: none" name="uploadFile" /></label>
             </div>
             <div id="editor" contenteditable="true" class="p-5 mb-4 bg-light rounded-3 w-100" >
-            	${js.jobsearch_main}
-               
+
+
             </div>
            </div>
         <div class="row" style="padding-left: 10%;">
@@ -64,7 +64,13 @@
 <script>
 $(document).ready(function () {
 	
-	}
+	let test = ${js.jobsearch_main}
+	let test1 = Object.values(${js.jobsearch_main})[1]
+	
+	
+	
+	
+	})
 
    function job_search() {
       let job_search= {

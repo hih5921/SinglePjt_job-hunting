@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="job_search_select" resultType="com.pjt.command.JobsearchVO">
-		select * from tbl_jobsearch where jobsearch_num=1
+		select * from tbl_jobsearch where jobsearch_num=5
 	</select>
 	
 </mapper>

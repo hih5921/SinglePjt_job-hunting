@@ -1,10 +1,6 @@
 package com.pjt.controller;
 
 import java.util.Map;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -64,7 +60,21 @@ public class RecruiterController {
    @RequestMapping("/job_search_select")
 	public String job_search_select(Model mo) {
 		JobsearchVO vo = js.job_search_select();
-		vo.setJobsearch_main(vo.getJobsearch_main().replaceAll("\\n",""));
+		char test = vo.getJobsearch_main().charAt(125);
+		String test2 = vo.getJobsearch_main();
+
+		String test10="";
+		for(int i=0; i<vo.getJobsearch_main().length()-1;i++) {
+				if(test2.charAt(i)==test && test2.charAt(i+1)==110) {
+					i++;
+					continue;
+				}
+				test10+=test2.charAt(i);
+		}
+		System.out.println(test10);
+		vo.setJobsearch_main(test10.replace("JSON.parse(",""));
+		
+		
 		System.out.println("vo"+vo.getJobsearch_main());
 		System.out.println("실행");
 		mo.addAttribute("js", vo);
