@@ -7,5 +7,9 @@
 		insert into tbl_jobsearch(jobsearch_title,jobsearch_main) values(#{jobsearch_title},#{jobsearch_main})
 	</insert>
 	
+	<select id="job_search_select" resultType="com.pjt.command.JobsearchVO">
+		select * from tbl_jobsearch where jobsearch_num=1
+	</select>
+	
 </mapper>
 

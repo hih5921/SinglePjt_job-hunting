@@ -2,9 +2,13 @@ package com.pjt.controller;
 
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +54,24 @@ public class RecruiterController {
       
       return res;
    }
+   
+   @RequestMapping("/mypage")
+	public String myPage() {
+		
+		return "/recruiter/R_MyPage";
+	}
+   
+   @RequestMapping("/job_search_select")
+	public String job_search_select(Model mo) {
+		JobsearchVO vo = js.job_search_select();
+		vo.setJobsearch_main(vo.getJobsearch_main().replaceAll("\\n",""));
+		System.out.println("vo"+vo.getJobsearch_main());
+		System.out.println("실행");
+		mo.addAttribute("js", vo);
+		System.out.println("실행2");
+		return "/recruiter/Job_search_select";
+	}
+   
    
    
 }

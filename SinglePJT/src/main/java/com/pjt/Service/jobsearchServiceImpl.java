@@ -19,4 +19,10 @@ public class jobsearchServiceImpl implements jobsearchService {
 		System.out.println("서비스 완료");
 		
 	}
+	
+	@Override
+	public JobsearchVO job_search_select() {
+		
+		return jm.job_search_select();
+	}
 }
