@@ -9,23 +9,35 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.pjt.Service.resumeService;
+import com.pjt.command.JobsearchVO;
 import com.pjt.command.Picture_ImgVO;
+import com.pjt.command.ResumeVO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -33,8 +45,10 @@ import net.coobird.thumbnailator.Thumbnails;
 @RequestMapping("/jobhunter")
 public class JobhunterController {
 
+	@Autowired
+	resumeService rs;
 	
-	@RequestMapping("/resume")
+	@GetMapping("/resume")
 	public String jh_resume() {
 		
 		return "/jobhunter/Resume";
@@ -45,6 +59,35 @@ public class JobhunterController {
 		
 		return "/jobhunter/MyPage";
 	}
+	
+	@RequestMapping(value="/resume", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+	   @ResponseBody
+	   public ResponseEntity<Integer> job_search(@RequestBody Map<String, Object> resume ) throws JsonProcessingException {
+	      ResponseEntity<Integer> res=null;
+	      ObjectMapper om = new ObjectMapper();
+	      JSONPObject json = new JSONPObject("JSON.parse", resume);
+	      String resume_info = om.writeValueAsString(json);
+	      ResumeVO vo = new ResumeVO();
+	      
+	      vo.setResume_info(resume_info);
+	      vo.setResume_title("test타이틀");
+	      vo.setUser_id("test1");
+	      
+	      rs.addResume(vo);
+	      return res;
+	   }
+	
+	@RequestMapping("/resume_select")
+	public String job_search_select(Model mo) {
+		ResumeVO vo =rs.resumeSelect(1);
+		System.out.println(vo);
+		vo.setResume_info(vo.getResume_info().replace("JSON.parse",""));
+		System.out.println(vo);
+		mo.addAttribute("re", vo);
+		System.out.println("실행완료");
+		return "/jobhunter/Resume_select";
+	}
+	
 	
 	// 등록한 파일 폴더에 저장
 		@PostMapping(value = "uploadFile", produces = MediaType.APPLICATION_JSON_VALUE)

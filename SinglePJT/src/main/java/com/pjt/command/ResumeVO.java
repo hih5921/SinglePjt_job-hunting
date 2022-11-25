@@ -7,5 +7,5 @@ public class ResumeVO {
 	private int resume_num;
 	private String resume_title;
 	private String resume_info;
-	
+	private String user_id;
 }

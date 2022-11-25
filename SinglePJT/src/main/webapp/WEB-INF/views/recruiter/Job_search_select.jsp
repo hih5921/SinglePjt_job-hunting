@@ -64,9 +64,18 @@
 <script>
 $(document).ready(function () {
 	
-	let test = ${js.jobsearch_main}
+	let test = Object.values(${js.jobsearch_main})[0]
 	let test1 = Object.values(${js.jobsearch_main})[1]
 	
+	
+	$('input[id=career]').attr('value',test.career);
+	$('input[id=salary]').attr('value',test.salary);
+	$('input[id=edu]').attr('value',test.edu);
+	$('input[id=work_date]').attr('value',test.work_date);
+	$('input[id=work_type]').attr('value',test.work_type);
+	$('input[id=work_place]').attr('value',test.work_place);
+	
+	$("#editor").html(test1)	
 	
 	
 	

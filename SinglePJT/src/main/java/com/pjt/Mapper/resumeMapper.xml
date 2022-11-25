@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.pjt.Mapper.resumeMapper">
+	<insert id="addResume" >
+		insert into tbl_resume(resume_title,resume_info,user_id) values(#{resume_title},#{resume_info},#{user_id})
+	</insert>
+	
+	<select id="resumeSelect" resultType="com.pjt.command.ResumeVO">
+		select * from tbl_resume where resume_num=1
+	</select>
+</mapper>
+

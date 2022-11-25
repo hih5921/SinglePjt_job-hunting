@@ -192,7 +192,95 @@
 <%@include file="../footer.jsp"%>         
 <script>
 /*json 만들기*/
- 
+$(document).ready(function () {
+	
+	let data0 = Object.values(${re.resume_info})[0]
+	let data1 = Object.values(${re.resume_info})[1]//m_info
+	let data2 = Object.values(${re.resume_info})[2]//s_info
+	let data3 = Object.values(${re.resume_info})[3]//c_info
+	let data4 = Object.values(${re.resume_info})[4]//certi_info
+	let data5 = Object.values(${re.resume_info})[5]//edu_info
+	let data6 = Object.values(${re.resume_info})[6]//oa_info
+	let data7 = Object.values(${re.resume_info})[7]//skill_info
+	
+	console.log(data1)
+	
+	
+	$('input[id=name]').attr('value',data0.name);
+	$('input[id=name_eng]').attr('value',data0.name_eng);
+	$('input[id=birth]').attr('value',data0.birth);
+	$('input[id=phon]').attr('value',data0.phon);
+	$('input[id=email]').attr('value',data0.email);
+	$('input[id=address]').attr('value',data0.address);
+	
+	$('input[id=m_check]').attr('value',data1.m_check);
+	$('input[id=m_depa]').attr('value',data1.m_depa);
+	$('input[id=m_period]').attr('value',data1.m_period);
+	
+	$('input[id=s_period1]').attr('value',data2[0].s_period);
+	$('input[id=s_name1]').attr('value',data2[0].s_name);
+	$('input[id=s_major1]').attr('value',data2[0].s_major);
+	$('input[id=s_check1]').attr('value',data2[0].s_check);
+	
+	$('input[id=s_period2]').attr('value',data2[1].s_period);
+	$('input[id=s_name2]').attr('value',data2[1].s_name);
+	$('input[id=s_major2]').attr('value',data2[1].s_major);
+	$('input[id=s_check2]').attr('value',data2[1].s_check);
+	
+	$('input[id=c_period1]').attr('value',data3[0].c_period);
+	$('input[id=c_name1]').attr('value',data3[0].c_name);
+	$('input[id=c_position1]').attr('value',data3[0].c_position);
+	$('input[id=c_task1]').attr('value',data3[0].c_task);
+	
+	$('input[id=c_period2]').attr('value',data3[1].c_period);
+	$('input[id=c_name2]').attr('value',data3[1].c_name);
+	$('input[id=c_position2]').attr('value',data3[1].c_position);
+	$('input[id=c_task2]').attr('value',data3[1].c_task);
+	
+	$('input[id=certi_date1]').attr('value',data4[0].certi_date);
+	$('input[id=certi_name1]').attr('value',data4[0].certi_name);
+	$('input[id=certi_rating1]').attr('value',data4[0].certi_rating);
+	$('input[id=certi_place1]').attr('value',data4[0].certi_place);
+	
+	$('input[id=certi_date2]').attr('value',data4[1].certi_date);
+	$('input[id=certi_name2]').attr('value',data4[1].certi_name);
+	$('input[id=certi_rating2]').attr('value',data4[1].certi_rating);
+	$('input[id=certi_place2]').attr('value',data4[1].certi_place);
+	
+	$('input[id=edu_date1]').attr('value',data5[0].edu_date);
+	$('input[id=edu_course1]').attr('value',data5[0].edu_course);
+	$('input[id=edu_place1]').attr('value',data5[0].edu_place);
+	$('input[id=edu_content1]').attr('value',data5[0].edu_content);
+	
+	$('input[id=edu_date2]').attr('value',data5[1].edu_date);
+	$('input[id=edu_course2]').attr('value',data5[1].edu_course);
+	$('input[id=edu_place2]').attr('value',data5[1].edu_place);
+	$('input[id=edu_content2]').attr('value',data5[1].edu_content);
+	
+	$('input[id=word]').attr('value',data6.word);
+	$('input[id=ppt]').attr('value',data6.ppt);
+	$('input[id=excel]').attr('value',data6.excel);
+	$('input[id=web]').attr('value',data6.web);
+	
+	$('input[id=skill_field1]').attr('value',data7[0].skill_field);
+	$('input[id=skill_content1]').attr('value',data7[0].skill_content);
+	$('input[id=skill_detaile1]').attr('value',data7[0].skill_detaile);
+	
+	$('input[id=skill_field2]').attr('value',data7[0].skill_field);
+	$('input[id=skill_content2]').attr('value',data7[0].skill_content);
+	$('input[id=skill_detaile2]').attr('value',data7[0].skill_detaile);
+	
+	$('input[id=skill_field3]').attr('value',data7[0].skill_field);
+	$('input[id=skill_content3]').attr('value',data7[0].skill_content);
+	$('input[id=skill_detaile3]').attr('value',data7[0].skill_detaile);
+	
+	$('input[id=skill_field4]').attr('value',data7[0].skill_field);
+	$('input[id=skill_content4]').attr('value',data7[0].skill_content);
+	$('input[id=skill_detaile4]').attr('value',data7[0].skill_detaile);
+	
+	
+	
+	}) 
  
 function test() {
 	let resume_info = {
