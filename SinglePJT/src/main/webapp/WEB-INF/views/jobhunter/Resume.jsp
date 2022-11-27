@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<head>
+	<style type="text/css">
+	img {
+	  width: 120px;
+	  height: 150px;
+	  object-fit: cover;
+	}
+	</style>
+</head>
 <%@include file="../header.jsp"%>
    <br>
-   <h1 align="center">이력서</h1>
+   <div contenteditable="true" ><h1 align="center" id="resume_title">이력서 제목</h1></div>
    <div class="container" style="border-collapse:collapse; border: 1px solid #888;  padding-left: 7%; margin-bottom: 1%;">
    <br>
    <p style="margin-bottom: 0px;">□ 인적사항</p>
-       <div  style="width:120px; height:150px; border:1px solid black; float:left; align-items: center;  margin-right: 3%; padding-top: 4%; padding-left:2px; ">
+       <div  style="width:120px; height:150px; border:1px solid black; float:left; align-items: center;  margin-right: 3%; ; " id="img">
 	         	
 	      	</div>
 	   
@@ -299,10 +307,13 @@ function test() {
 			]
 			
 	}
+	let resume_title = $('h1[id="resume_title"]').html()
+	let user_id = "test1"
+
 	$.ajax({
-        url: "/jobhunter/resume/",
+        url: "/jobhunter/resume?&resume_title="+resume_title+"&user_id="+user_id ,
         type:"post",
-        data: JSON.stringify( resume_info ),
+        data:JSON.stringify( resume_info ),
         contentType : "application/json; charset=UTF-8"
         
       }).done(function(data) {
@@ -370,13 +381,13 @@ function showUploadImage(uploadResultArr){
 	/* 전달받은 데이터 검증 */
 	if(!uploadResultArr || uploadResultArr.length == 0){return}
 	
-	let uploadResult = $("#editor");
+	let uploadResult = $("#img");
 	let obj = uploadResultArr[0];
 	let str = "";
 	let fileCallPath = obj.img_uploadPath.replace(/\\/g, '/') + "/s_" + obj.img_uuid + "_" + obj.img_fileName;
 	
 	
-	str += "<img src='/board/display?filename=" + fileCallPath +"'>";
+	str += "<img src='/jobhunter/display?filename=" + fileCallPath +"'>";
 	str += "<input type='hidden' name='imageList[0].img_fileName' value='"+ obj.img_fileName +"'>";
 	str += "<input type='hidden' name='imageList[0].img_uuid' value='"+ obj.img_uuid +"'>";
 	str += "<input type='hidden' name='imageList[0].img_uploadPath' value='"+ obj.img_uploadPath +"'>";		

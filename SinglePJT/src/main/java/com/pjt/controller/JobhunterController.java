@@ -60,23 +60,31 @@ public class JobhunterController {
 		return "/jobhunter/MyPage";
 	}
 	
+	//이력서 관리(조회)
+	@RequestMapping("/resume_management")
+	public String resume_management() {
+		
+		return "/jobhunter/resume_management";
+	}
+	
+	//이력서 저장
 	@RequestMapping(value="/resume", produces = "application/json; charset=utf8", method = RequestMethod.POST)
 	   @ResponseBody
-	   public ResponseEntity<Integer> job_search(@RequestBody Map<String, Object> resume ) throws JsonProcessingException {
+	   public ResponseEntity<Integer> job_search(@RequestBody Map<String, Object> resume , ResumeVO vo) throws JsonProcessingException {
 	      ResponseEntity<Integer> res=null;
 	      ObjectMapper om = new ObjectMapper();
 	      JSONPObject json = new JSONPObject("JSON.parse", resume);
 	      String resume_info = om.writeValueAsString(json);
-	      ResumeVO vo = new ResumeVO();
-	      
+	      System.out.println(vo.getUser_id());
+	      System.out.println(vo.getResume_title());
 	      vo.setResume_info(resume_info);
-	      vo.setResume_title("test타이틀");
-	      vo.setUser_id("test1");
+	      
 	      
 	      rs.addResume(vo);
 	      return res;
 	   }
 	
+	//이력서 조회
 	@RequestMapping("/resume_select")
 	public String job_search_select(Model mo) {
 		ResumeVO vo =rs.resumeSelect(1);

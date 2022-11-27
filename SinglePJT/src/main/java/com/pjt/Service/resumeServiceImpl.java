@@ -23,4 +23,12 @@ public class resumeServiceImpl implements resumeService {
 		
 		return rm.resumeSelect(resume_num);
 	}
+	
+	@Override
+	public ResumeVO resumeManagement(String user_id) {
+		
+		return null;
+	}
+	
+	
 }

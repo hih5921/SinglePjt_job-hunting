@@ -11,5 +11,7 @@
 		select * from tbl_jobsearch where jobsearch_num=1
 	</select>
 	
+	
+	
 </mapper>
 

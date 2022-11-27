@@ -3,7 +3,7 @@
     
 <%@include file="../header.jsp"%>
    <br>
-   <h1 align="center">이력서</h1>
+   <div contenteditable="true" id="resume_title"><h1 align="center">이력서 제목</h1></div>
    <div class="container" style="border-collapse:collapse; border: 1px solid #888;  padding-left: 7%; margin-bottom: 1%;">
    <br>
    <p style="margin-bottom: 0px;">□ 인적사항</p>
@@ -266,19 +266,18 @@ $(document).ready(function () {
 	$('input[id=skill_content1]').attr('value',data7[0].skill_content);
 	$('input[id=skill_detaile1]').attr('value',data7[0].skill_detaile);
 	
-	$('input[id=skill_field2]').attr('value',data7[0].skill_field);
-	$('input[id=skill_content2]').attr('value',data7[0].skill_content);
-	$('input[id=skill_detaile2]').attr('value',data7[0].skill_detaile);
+	$('input[id=skill_field2]').attr('value',data7[1].skill_field);
+	$('input[id=skill_content2]').attr('value',data7[1].skill_content);
+	$('input[id=skill_detaile2]').attr('value',data7[1].skill_detaile);
 	
-	$('input[id=skill_field3]').attr('value',data7[0].skill_field);
-	$('input[id=skill_content3]').attr('value',data7[0].skill_content);
-	$('input[id=skill_detaile3]').attr('value',data7[0].skill_detaile);
+	$('input[id=skill_field3]').attr('value',data7[2].skill_field);
+	$('input[id=skill_content3]').attr('value',data7[2].skill_content);
+	$('input[id=skill_detaile3]').attr('value',data7[2].skill_detaile);
 	
-	$('input[id=skill_field4]').attr('value',data7[0].skill_field);
-	$('input[id=skill_content4]').attr('value',data7[0].skill_content);
-	$('input[id=skill_detaile4]').attr('value',data7[0].skill_detaile);
-	
-	
+	$('input[id=skill_field4]').attr('value',data7[3].skill_field);
+	$('input[id=skill_content4]').attr('value',data7[3].skill_content);
+	$('input[id=skill_detaile4]').attr('value',data7[3].skill_detaile);
+
 	
 	}) 
  
@@ -390,7 +389,7 @@ function test() {
 	$.ajax({
         url: "/jobhunter/resume/",
         type:"post",
-        data: JSON.stringify( resume_info ),
+        data: {JSON.stringify( resume_info ),'resume_title':resume_title,'user_id':${sessionScope.user_id}},
         contentType : "application/json; charset=UTF-8"
         
       }).done(function(data) {

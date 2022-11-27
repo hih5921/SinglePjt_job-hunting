@@ -11,5 +11,11 @@
 	<select id="resumeSelect" resultType="com.pjt.command.ResumeVO">
 		select * from tbl_resume where resume_num=1
 	</select>
+	
+	<select id="resumeManagement" resultType="com.pjt.command.ResumeVO">
+		select * from tbl_resume where user_id = #{user_id}
+	</select>
+	
+	
 </mapper>
 
