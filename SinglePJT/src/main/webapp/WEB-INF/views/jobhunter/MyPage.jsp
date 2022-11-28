@@ -32,7 +32,7 @@
           <div class="col-lg-4 mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">이력서 관리</a></h4>
+              <h4><a href="/jobhunter/resume_management">이력서 관리</a></h4>
             </div>
           </div>
 			

@@ -17,7 +17,7 @@
    <p style="margin-bottom: 0px;">□ 인적사항</p>
        <div  style="width:120px; height:150px; border:1px solid black; float:left; align-items: center;  margin-right: 3%; ; " id="img">
 	         	
-	      	</div>
+	   </div>
 	   
 
          <div class="row " style="height: 40px; ">
@@ -306,20 +306,30 @@ function test() {
 				}
 			]
 			
+			
 	}
 	let resume_title = $('h1[id="resume_title"]').html()
 	let user_id = "test1"
-
+	var img_fileName = $('input[name="imageList[0].img_fileName"]').val()
+	var img_uuid = $('input[name="imageList[0].img_uuid"]').val()
+	var img_uploadPath = $('input[name="imageList[0].img_uploadPath"]').val()
+	console.log(img_fileName)
+	console.log(img_uuid)
+	console.log(img_uploadPath)
 	$.ajax({
-        url: "/jobhunter/resume?&resume_title="+resume_title+"&user_id="+user_id ,
+        url: "/jobhunter/resume_modify?&resume_title="+resume_title
+        +"&user_id="+user_id
+        +"&imageList[0].img_fileName="+img_fileName
+        +"&imageList[0].img_uuid="+img_uuid
+        +"&imageList[0].img_uploadPath="+img_uploadPath,
         type:"post",
         data:JSON.stringify( resume_info ),
         contentType : "application/json; charset=UTF-8"
+	 }).done(function(data) {
+    	 
+		location.href="/jobhunter/mypage/";  
+    	 
         
-      }).done(function(data) {
-     	 console.log("실행1")
-			location.href="/jobhunter/mypage/";  
-     	 console.log("실행2")
       });   
 	console.log(resume_info)
 }
@@ -328,17 +338,25 @@ function test() {
 
 /* 이미지 업로드 */
 $("input[type='file']").on("change", function(e) {
-	let formData = new FormData();
+	var formData = new FormData()
 	let fileInput = $('input[name="uploadFile"]');
 	let fileList = fileInput[0].files;
 	let fileObj = fileList[0];
-
+	
+	
 	if (!fileCheck(fileObj.name, fileObj.size)) {
+		console.log("리턴")
 		return false;
 	}
 
-	formData.append("uploadFile", fileObj);
-
+	
+	formData.append('uploadFile', fileObj);
+	console.log(fileInput)
+	console.log(fileObj)
+	console.log(fileList)
+	console.log(formData.keys())
+	console.log(formData.values())
+	console.log(formData.get('uploadFile'))
 	$.ajax({
 		url : '/jobhunter/uploadFile',
 		processData : false,
@@ -391,8 +409,8 @@ function showUploadImage(uploadResultArr){
 	str += "<input type='hidden' name='imageList[0].img_fileName' value='"+ obj.img_fileName +"'>";
 	str += "<input type='hidden' name='imageList[0].img_uuid' value='"+ obj.img_uuid +"'>";
 	str += "<input type='hidden' name='imageList[0].img_uploadPath' value='"+ obj.img_uploadPath +"'>";		
-	
-		uploadResult.append(str);   
+	uploadResult.text("")
+	uploadResult.append(str);   
 }
 </script>
          

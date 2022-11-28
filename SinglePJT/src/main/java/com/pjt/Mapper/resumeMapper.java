@@ -1,10 +1,17 @@
 package com.pjt.Mapper;
 
+import java.util.List;
+
+import com.pjt.command.Picture_ImgVO;
 import com.pjt.command.ResumeVO;
 
 public interface resumeMapper {
 	public void addResume(ResumeVO vo);
 	public ResumeVO resumeSelect(int resume_num);
-	public ResumeVO resumeManagement(String user_id);
-	
+	public List<ResumeVO> resumeManagement(String user_id);
+	public void imageEnroll(Picture_ImgVO vo);
+	public Picture_ImgVO getPicture(int resume_num);
+	public void resume_modify(ResumeVO vo);
+	public void img_modify(Picture_ImgVO vo);
+	public int resume_delete(int resume_num);
 }

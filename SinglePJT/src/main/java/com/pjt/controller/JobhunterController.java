@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -35,7 +36,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.pjt.Service.resumeService;
-import com.pjt.command.JobsearchVO;
 import com.pjt.command.Picture_ImgVO;
 import com.pjt.command.ResumeVO;
 
@@ -60,40 +60,65 @@ public class JobhunterController {
 		return "/jobhunter/MyPage";
 	}
 	
-	//이력서 관리(조회)
+	//이력서 관리
 	@RequestMapping("/resume_management")
-	public String resume_management() {
-		
+	public String resume_management(HttpSession session, Model mo) {
+		String user_id= (String)session.getAttribute("user_id");
+		List<ResumeVO> list =  rs.resumeManagement(user_id);
+		mo.addAttribute("list",list);
 		return "/jobhunter/resume_management";
 	}
 	
 	//이력서 저장
 	@RequestMapping(value="/resume", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-	   @ResponseBody
-	   public ResponseEntity<Integer> job_search(@RequestBody Map<String, Object> resume , ResumeVO vo) throws JsonProcessingException {
-	      ResponseEntity<Integer> res=null;
-	      ObjectMapper om = new ObjectMapper();
-	      JSONPObject json = new JSONPObject("JSON.parse", resume);
-	      String resume_info = om.writeValueAsString(json);
-	      System.out.println(vo.getUser_id());
-	      System.out.println(vo.getResume_title());
-	      vo.setResume_info(resume_info);
-	      
-	      
-	      rs.addResume(vo);
-	      return res;
-	   }
+    @ResponseBody
+    public ResponseEntity<Integer> job_search(@RequestBody Map<String, Object> resume , ResumeVO vo) throws JsonProcessingException {
+		ResponseEntity<Integer> res=null;
+		ObjectMapper om = new ObjectMapper();
+		JSONPObject json = new JSONPObject("JSON.parse", resume);
+		String resume_info = om.writeValueAsString(json);
+		vo.setResume_info(resume_info);
+		rs.addResume(vo);
+		return res;
+	}
+	
+	//이력서 수정
+		@RequestMapping(value="/resume_modify", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+	    @ResponseBody
+	    public ResponseEntity<Integer> resume_modify(@RequestBody Map<String, Object> resume , ResumeVO vo) throws JsonProcessingException {
+			ResponseEntity<Integer> res=null;
+			ObjectMapper om = new ObjectMapper();
+			JSONPObject json = new JSONPObject("JSON.parse", resume);
+			String resume_info = om.writeValueAsString(json);
+			vo.setResume_info(resume_info);
+			
+			rs.resume_modify(vo);
+			
+			return res;
+		}
 	
 	//이력서 조회
 	@RequestMapping("/resume_select")
-	public String job_search_select(Model mo) {
-		ResumeVO vo =rs.resumeSelect(1);
+	public String job_search_select(Model mo, int resume_num) {
+		ResumeVO vo =rs.resumeSelect(resume_num);
+		Picture_ImgVO ivo =rs.getPicture(resume_num);
 		System.out.println(vo);
+		System.out.println(ivo);
 		vo.setResume_info(vo.getResume_info().replace("JSON.parse",""));
-		System.out.println(vo);
 		mo.addAttribute("re", vo);
+		mo.addAttribute("img", ivo);
 		System.out.println("실행완료");
 		return "/jobhunter/Resume_select";
+	}
+	
+	//이력서 삭제
+	@RequestMapping("resume_delete")
+	public ResponseEntity<Integer> resume_delte(int resume_num) {
+		int r = rs.resume_delete(resume_num);
+		System.out.println("실행1"+resume_num);
+		ResponseEntity<Integer> res = new ResponseEntity<Integer> (r, HttpStatus.OK);
+		System.out.println("실행2"+r);
+		return res;
 	}
 	
 	

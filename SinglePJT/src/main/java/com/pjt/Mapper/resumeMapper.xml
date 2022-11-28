@@ -4,17 +4,52 @@
 
 
 <mapper namespace="com.pjt.Mapper.resumeMapper">
+
 	<insert id="addResume" >
 		insert into tbl_resume(resume_title,resume_info,user_id) values(#{resume_title},#{resume_info},#{user_id})
 	</insert>
 	
+	<insert id="imageEnroll">
+		<selectKey resultType="int" keyProperty="resume_num"
+			order="AFTER">
+			SELECT MAX(resume_num) FROM tbl_resume
+		</selectKey>
+		insert into tbl_picture(resume_num, img_fileName, img_uploadPath, img_uuid)
+		values ((SELECT MAX(resume_num) FROM tbl_resume), #{img_fileName},
+		#{img_uploadPath}, #{img_uuid})
+	</insert>
+	
 	<select id="resumeSelect" resultType="com.pjt.command.ResumeVO">
-		select * from tbl_resume where resume_num=1
+		select * from tbl_resume where resume_num=#{resume_num}
 	</select>
 	
 	<select id="resumeManagement" resultType="com.pjt.command.ResumeVO">
 		select * from tbl_resume where user_id = #{user_id}
 	</select>
+	
+	
+	<select id="getPicture" resultType="com.pjt.command.Picture_ImgVO">
+		select * from tbl_picture where resume_num = #{resume_num}
+	</select>
+	
+	<update id="resume_modify">
+		update tbl_resume set
+		resume_title=#{resume_title} ,
+		resume_info = #{resume_info}
+		where resume_num = #{resume_num}
+	</update>
+	
+	<update id="img_modify">
+		update tbl_picture set
+		img_fileName =#{img_fileName}, 
+		img_uploadPath=#{img_uploadPath}, 
+		img_uuid=#{img_uuid}
+		where resume_num = #{resume_num}
+	</update>
+	
+	<delete id="resume_delete" >
+		delete from tbl_resume where resume_num = #{resume}
+	</delete>
 	
 	
 </mapper>
