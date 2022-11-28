@@ -48,12 +48,21 @@ public class resumeServiceImpl implements resumeService {
 	@Override
 	public void resume_modify(ResumeVO vo) {
 		rm.resume_modify(vo);
+		
 		if(vo.getImageList() == null || vo.getImageList().size() <= 0) {
 			return;
 		}
-		for(Picture_ImgVO attach : vo.getImageList()) {
+		System.out.println(rm.getPicture(vo.getResume_num()));
+		if(rm.getPicture(vo.getResume_num())==null) {
+			for(Picture_ImgVO attach : vo.getImageList()) {
+				attach.setResume_num(vo.getResume_num());
+				rm.imgAdd(attach);
+			}
+		}else{
+			for(Picture_ImgVO attach : vo.getImageList()) {
 			attach.setResume_num(vo.getResume_num());
 			rm.img_modify(attach);
+			}
 		}
 	}
 	

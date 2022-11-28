@@ -317,7 +317,7 @@ function test() {
 	console.log(img_uuid)
 	console.log(img_uploadPath)
 	$.ajax({
-        url: "/jobhunter/resume_modify?&resume_title="+resume_title
+        url: "/jobhunter/resume?&resume_title="+resume_title
         +"&user_id="+user_id
         +"&imageList[0].img_fileName="+img_fileName
         +"&imageList[0].img_uuid="+img_uuid

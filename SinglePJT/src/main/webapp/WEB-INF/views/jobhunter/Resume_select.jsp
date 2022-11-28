@@ -407,7 +407,7 @@ function modify() {
 	$.ajax({
         url: "/jobhunter/resume_modify/?&resume_title="+resume_title
         +"&user_id="+user_id
-        +"&resume_number="+${param.resume_num}
+        +"&resume_num="+${param.resume_num}
         +"&imageList[0].img_fileName="+img_fileName
         +"&imageList[0].img_uuid="+img_uuid
         +"&imageList[0].img_uploadPath="+img_uploadPath,

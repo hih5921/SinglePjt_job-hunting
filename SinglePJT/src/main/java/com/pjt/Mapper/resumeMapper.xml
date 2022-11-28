@@ -19,6 +19,13 @@
 		#{img_uploadPath}, #{img_uuid})
 	</insert>
 	
+	<insert id="imgAdd">
+		insert into tbl_picture(resume_num, img_fileName, img_uploadPath, img_uuid)
+		values (#{resume_num}, #{img_fileName},#{img_uploadPath}, #{img_uuid})
+	</insert>
+	
+	
+	
 	<select id="resumeSelect" resultType="com.pjt.command.ResumeVO">
 		select * from tbl_resume where resume_num=#{resume_num}
 	</select>

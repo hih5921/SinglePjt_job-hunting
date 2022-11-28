@@ -14,4 +14,5 @@ public interface resumeMapper {
 	public void resume_modify(ResumeVO vo);
 	public void img_modify(Picture_ImgVO vo);
 	public int resume_delete(int resume_num);
+	public void imgAdd(Picture_ImgVO vo);
 }

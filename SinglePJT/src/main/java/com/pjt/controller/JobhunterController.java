@@ -91,6 +91,7 @@ public class JobhunterController {
 			JSONPObject json = new JSONPObject("JSON.parse", resume);
 			String resume_info = om.writeValueAsString(json);
 			vo.setResume_info(resume_info);
+			System.out.println(vo);
 			
 			rs.resume_modify(vo);
 			
