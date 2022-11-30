@@ -24,7 +24,7 @@
           <div class="col-lg-4 mt-4 mt-md-0" style="width: 30%;">
             <div class="icon-box">
               <div class="icon" ><i class="bx bx-user"></i></div>
-              <h4><a href="">내정보</a></h4>
+              <h4><a href="/main/info">내정보</a></h4>
               
             </div>
           </div>

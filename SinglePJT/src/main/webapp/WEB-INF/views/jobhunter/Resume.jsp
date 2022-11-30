@@ -309,7 +309,7 @@ function test() {
 			
 	}
 	let resume_title = $('h1[id="resume_title"]').html()
-	let user_id = "test1"
+	let user_id = ${sessionScope.user_id}
 	var img_fileName = $('input[name="imageList[0].img_fileName"]').val()
 	var img_uuid = $('input[name="imageList[0].img_uuid"]').val()
 	var img_uploadPath = $('input[name="imageList[0].img_uploadPath"]').val()

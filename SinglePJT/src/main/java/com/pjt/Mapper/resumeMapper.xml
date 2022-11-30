@@ -39,6 +39,10 @@
 		select * from tbl_picture where resume_num = #{resume_num}
 	</select>
 	
+	<select id="getPicture_all" resultType="com.pjt.command.Picture_ImgVO">
+		select * from tbl_picture
+	</select>
+	
 	<update id="resume_modify">
 		update tbl_resume set
 		resume_title=#{resume_title} ,
@@ -57,6 +61,18 @@
 	<delete id="resume_delete" >
 		delete from tbl_resume where resume_num = #{resume}
 	</delete>
+	
+	<select id="getMainResume" resultType="com.pjt.command.MainResumeVO">
+		select * from tbl_mainresume where user_id = #{user_id}
+	</select>
+	
+	<insert id="mainresume_add">
+		insert into tbl_mainresume(user_id,resume_num) values(#{user_id},#{resume_num})
+	</insert>
+	
+	<update id="mainresume_update">
+		update tbl_mainresume set resume_num = #{resume_num} where user_id = #{user_id} 
+	</update>
 	
 	
 </mapper>

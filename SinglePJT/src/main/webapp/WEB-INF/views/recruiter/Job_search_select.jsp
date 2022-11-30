@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../header.jsp"%>
    <br>
-   <h2 align="center">기업정보</h2>
+   <div contenteditable="true"><h2 align="center" id="jobsearch_title">${js.jobsearch_title }</h2></div>
    <div class="container " style="border-collapse:collapse; border: 1px solid #888; margin-bottom: 1%; padding-top: 1%; padding-bottom: 1%; ">
    <hr>
       <div class="row  " style="height: 40px;margin-left: 10px;justify-content: center; ">
@@ -18,7 +18,7 @@
             <input type="text" class="col-3 bg-light" style="border: 2px solid #888;" name="work_date" id="work_date"/>
         </div>
         <div class="row  " style="height: 40px;margin-left: 10px;justify-content: center; ">
-            <label class="col-1" style="border: 2px solid #888;">근무형태</label>
+            <label class="col-1" style="border: 2px solid #888;">마감일</label>
             <input type="text" class="col-3 bg-light" style="border: 2px solid #888;" name="work_type" id="work_type"/>
             <label class="col-1" style="border: 2px solid #888;">근무지역</label> 
             <input type="text" class="col-3 bg-light" style="border: 2px solid #888;" name="work_place" id="work_place"/>
@@ -64,26 +64,37 @@
 <script>
 $(document).ready(function () {
 	
-	let test = ${js.jobsearch_main}
-	let test1 = Object.values(${js.jobsearch_main})[1]
-
+	
+	let data = Object.values(${js.jobsearch_main})[0]
+	let main_data = Object.values(${js.jobsearch_main})[1]
+	
+	$('input[id=career]').attr('value',data.career);
+	$('input[id=salary]').attr('value',data.salary);
+	$('input[id=edu]').attr('value',data.edu);
+	$('input[id=work_date]').attr('value',data.work_date);
+	$('input[id=work_type]').attr('value',data.work_type);
+	$('input[id=work_place]').attr('value',data.work_place);
+	
+	$('#editor').text("")
+	$('#editor').append(main_data)
 	})
 
    function job_search() {
       let job_search= {
             title_info:{
-               career:$('input[name="career"]').val(),
-               salary:$('input[name="salary"]').val(),
-               edu:$('input[name="edu"]').val(),
-               work_date:$('input[name="work_date"]').val(),
-               work_type:$('input[name="work_type"]').val(),
-               work_place:$('input[name="work_place"]').val()
+               career:$('input[name=career]').val(),
+               salary:$('input[name=salary]').val(),
+               edu:$('input[name=edu]').val(),
+               work_date:$('input[name=work_date]').val(),
+               work_type:$('input[name=work_type]').val(),
+               work_place:$('input[name=work_place]').val()
             },
             main_info:document.getElementById("editor").innerHTML
       }
       console.log(job_search)
+      let jobsearch_title = $('h2[id="jobsearch_title"]').html()
       $.ajax({
-           url: "/recruiter/job_search/",
+           url: "/recruiter/job_search_modify/?&user_id=${sessionScope.user_id}&jobsearch_title="+jobsearch_title+"&jobsearch_num="+${param.jobsearch_num},
            type:"post",
            data: JSON.stringify( job_search ),
            contentType : "application/json; charset=UTF-8"
@@ -137,5 +148,75 @@ $(document).ready(function () {
     // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌
     function focusEditor() {
         editor.focus({preventScroll: true});
+    }
+    
+
+    /* 이미지 업로드 */
+    $("input[type='file']").on("change", function(e) {
+    	let formData = new FormData();
+    	let fileInput = $('input[name="uploadFile"]');
+    	let fileList = fileInput[0].files;
+    	let fileObj = fileList[0];
+
+    	if (!fileCheck(fileObj.name, fileObj.size)) {
+    		return false;
+    	}
+
+    	formData.append("uploadFile", fileObj);
+
+    	$.ajax({
+    		url : '/jobhunter/uploadFile',
+    		processData : false,
+    		contentType : false,
+    		data : formData,
+    		type : 'POST',
+    		dataType : 'json',
+    		success: function(result) {
+    			showUploadImage(result)
+    		},
+    		error : function(result) {
+    			alert("이미지 파일이 아닙니다.");
+    		}
+    	});
+
+    });
+
+    /* var, method related with attachFile */
+    let regex = new RegExp("(.*?)\.(jpg|png)$");
+    let maxSize = 1048576; //1MB	
+
+    function fileCheck(fileName, fileSize) {
+
+    	if(!regex.test(fileName)){
+    		console.log(fileName)
+    		alert("해당 종류의 파일은 업로드할 수 없습니다.");
+    		return false;
+    	}
+
+    	if (fileSize >= maxSize) {
+    		alert("파일 사이즈 초과");
+    		return false;
+    	}
+
+    	return true;
+
+    }
+    //이미지 출력
+    function showUploadImage(uploadResultArr){
+    	/* 전달받은 데이터 검증 */
+    	if(!uploadResultArr || uploadResultArr.length == 0){return}
+    	
+    	let uploadResult = $("#editor");
+    	let obj = uploadResultArr[0];
+    	let str = "";
+    	let fileCallPath = obj.img_uploadPath.replace(/\\/g, '/') + "/s_" + obj.img_uuid + "_" + obj.img_fileName;
+    	
+    	
+    	str += "<img src='/jobhunter/display?filename=" + fileCallPath +"'>";
+    	str += "<input type='hidden' name='imageList[0].img_fileName' value='"+ obj.img_fileName +"'>";
+    	str += "<input type='hidden' name='imageList[0].img_uuid' value='"+ obj.img_uuid +"'>";
+    	str += "<input type='hidden' name='imageList[0].img_uploadPath' value='"+ obj.img_uploadPath +"'>";		
+    	
+    	uploadResult.append(str);   
     }
 </script>

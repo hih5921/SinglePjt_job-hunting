@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pjt.Mapper.resumeMapper;
+import com.pjt.command.MainResumeVO;
 import com.pjt.command.Picture_ImgVO;
 import com.pjt.command.ResumeVO;
 
@@ -52,7 +53,6 @@ public class resumeServiceImpl implements resumeService {
 		if(vo.getImageList() == null || vo.getImageList().size() <= 0) {
 			return;
 		}
-		System.out.println(rm.getPicture(vo.getResume_num()));
 		if(rm.getPicture(vo.getResume_num())==null) {
 			for(Picture_ImgVO attach : vo.getImageList()) {
 				attach.setResume_num(vo.getResume_num());
@@ -70,6 +70,27 @@ public class resumeServiceImpl implements resumeService {
 	public int resume_delete(int resume_num) {
 	
 		return rm.resume_delete(resume_num);
+	}
+	
+	@Override
+	public int mainresume(MainResumeVO vo) {
+		if(rm.getMainResume(vo)==null) {
+			return rm.mainresume_add(vo);
+		}else {
+			return rm.mainresume_update(vo);
+		}
+	}
+	
+	@Override
+	public MainResumeVO getMainResume(MainResumeVO vo) {
+		
+		return rm.getMainResume(vo);
+	}
+	
+	@Override
+	public List<Picture_ImgVO> getPicture_all() {
+		
+		return rm.getPicture_all();
 	}
 	
 }

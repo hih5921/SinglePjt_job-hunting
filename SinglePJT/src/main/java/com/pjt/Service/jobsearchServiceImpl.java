@@ -1,5 +1,7 @@
 package com.pjt.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,20 @@ public class jobsearchServiceImpl implements jobsearchService {
 	}
 	
 	@Override
-	public JobsearchVO job_search_select() {
+	public JobsearchVO job_search_select(int jobsearch_num) {
 		
-		return jm.job_search_select();
+		return jm.job_search_select(jobsearch_num);
+	}
+	
+	@Override
+	public List<JobsearchVO> job_search_management(String user_id) {
+		
+		return jm.job_search_management(user_id);
+	}
+	
+	@Override
+	public void modifyJobSearch(JobsearchVO vo) {
+		
+		jm.modifyJobSearch(vo);
 	}
 }

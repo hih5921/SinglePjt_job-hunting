@@ -4,14 +4,20 @@
 
 <mapper namespace="com.pjt.Mapper.jobsearchMapper">
 	<insert id="addJobSearch" >
-		insert into tbl_jobsearch(jobsearch_title,jobsearch_main) values(#{jobsearch_title},#{jobsearch_main})
+		insert into tbl_jobsearch(jobsearch_title,jobsearch_main,user_id) values(#{jobsearch_title},#{jobsearch_main},#{user_id})
 	</insert>
 	
 	<select id="job_search_select" resultType="com.pjt.command.JobsearchVO">
-		select * from tbl_jobsearch where jobsearch_num=1
+		select * from tbl_jobsearch where jobsearch_num=#{jobsearch_num}
 	</select>
 	
+	<select id="job_search_management" resultType="com.pjt.command.JobsearchVO">
+		select * from tbl_jobsearch where user_id =#{user_id}
+	</select>
 	
+	<update id="modifyJobSearch">
+		update tbl_jobsearch set jobsearch_title=#{jobsearch_title},jobsearch_main=#{jobsearch_main} where jobsearch_num = #{jobsearch_num}
+	</update>
 	
 </mapper>
 

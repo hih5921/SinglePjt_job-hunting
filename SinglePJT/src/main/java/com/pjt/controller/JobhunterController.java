@@ -36,6 +36,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.pjt.Service.resumeService;
+import com.pjt.command.MainResumeVO;
 import com.pjt.command.Picture_ImgVO;
 import com.pjt.command.ResumeVO;
 
@@ -65,7 +66,15 @@ public class JobhunterController {
 	public String resume_management(HttpSession session, Model mo) {
 		String user_id= (String)session.getAttribute("user_id");
 		List<ResumeVO> list =  rs.resumeManagement(user_id);
+		List<Picture_ImgVO> img_list = rs.getPicture_all();
+		for(int i=0;i<img_list.size();i++) {
+			img_list.get(i).setImg_uploadPath(img_list.get(i).getImg_uploadPath().replace("\\", "/"));
+			
+			System.out.println(img_list.get(i).getImg_uploadPath());
+			
+		}
 		mo.addAttribute("list",list);
+		mo.addAttribute("img_list",img_list);
 		return "/jobhunter/resume_management";
 	}
 	
@@ -113,12 +122,18 @@ public class JobhunterController {
 	}
 	
 	//이력서 삭제
-	@RequestMapping("resume_delete")
+	@RequestMapping("/resume_delete")
 	public ResponseEntity<Integer> resume_delte(int resume_num) {
 		int r = rs.resume_delete(resume_num);
-		System.out.println("실행1"+resume_num);
 		ResponseEntity<Integer> res = new ResponseEntity<Integer> (r, HttpStatus.OK);
-		System.out.println("실행2"+r);
+		return res;
+	}
+	
+	//대표이력서 등록
+	@RequestMapping("/mainresume")
+	public ResponseEntity<Integer> mainResume(MainResumeVO vo){
+		System.out.println("ctrl"+vo);
+		ResponseEntity<Integer> res = new ResponseEntity<Integer> (rs.mainresume(vo), HttpStatus.OK);
 		return res;
 	}
 	

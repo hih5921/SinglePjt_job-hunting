@@ -24,7 +24,7 @@
           <div class="col-lg-4 mt-4 mt-md-0" style="width: 30%;">
             <div class="icon-box">
               <div class="icon" ><i class="bx bx-user"></i></div>
-              <h4><a href="">내정보</a></h4>
+              <h4><a href="/main/info">내정보</a></h4>
               
             </div>
           </div>
@@ -32,14 +32,14 @@
           <div class="col-lg-4 mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="/recruiter/job_search">구인공고 관리</a></h4>
+              <h4><a href="/recruiter/job_search_management">구인공고 관리</a></h4>
             </div>
           </div>
 			
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-star"></i></div>
-              <h4><a href="">즐겨찾기</a></h4>
+              <div class="icon"><i class="bx bxs-contact"></i></div>
+              <h4><a href="">지원현황</a></h4>
             </div>
           </div>
 
