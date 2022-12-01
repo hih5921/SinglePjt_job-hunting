@@ -19,4 +19,5 @@ public interface resumeService {
 	public List<Picture_ImgVO> getPicture_all();
 	
 	
+	
 }

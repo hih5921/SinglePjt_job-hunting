@@ -39,4 +39,20 @@ public class jobsearchServiceImpl implements jobsearchService {
 		
 		jm.modifyJobSearch(vo);
 	}
+	
+	@Override
+	public int jobsearch_delete(int jobsearch_num) {
+		
+		return jm.jobsearch_delete(jobsearch_num);
+	}
+	
+	@Override
+	public int jobsearch_public(int jobsearch_num) {
+		String jobsearch_check = jm.getJobsearch_check(jobsearch_num);
+		if(jobsearch_check.equals("1")) {
+			return jm.jobsearch_public("0",jobsearch_num);
+		}else {
+			return jm.jobsearch_public("1",jobsearch_num);
+		}
+	}
 }

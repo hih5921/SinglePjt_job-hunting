@@ -19,5 +19,17 @@
 		update tbl_jobsearch set jobsearch_title=#{jobsearch_title},jobsearch_main=#{jobsearch_main} where jobsearch_num = #{jobsearch_num}
 	</update>
 	
+	<delete id="jobsearch_delete">
+		delete from tbl_jobsearch where jobsearch_num = #{jobsearch_num}
+	</delete>
+	
+	<update id="jobsearch_public">
+		update tbl_jobsearch set jobsearch_check = #{jobsearch_check} where jobsearch_num = #{jobsearch_num}
+	</update>
+	
+	<select id="getJobsearch_check" resultType="String">
+		select jobsearch_check from tbl_jobsearch where jobsearch_num= #{jobsearch_num}
+	</select>
+	
 </mapper>
 

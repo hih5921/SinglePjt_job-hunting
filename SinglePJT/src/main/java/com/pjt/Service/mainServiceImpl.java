@@ -1,9 +1,12 @@
 package com.pjt.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pjt.Mapper.mainMapper;
+import com.pjt.command.JobsearchVO;
 import com.pjt.command.UserVO;
 
 @Service
@@ -27,5 +30,11 @@ public class mainServiceImpl implements mainService{
 	public int login(UserVO vo) {
 		
 		return mm.login(vo);
+	}
+	
+	@Override
+	public List<JobsearchVO> jobsearch_list() {
+		
+		return mm.jobsearch_list();
 	}
 }

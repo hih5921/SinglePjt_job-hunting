@@ -8,6 +8,7 @@ public class JobsearchVO{
 	private String jobsearch_title;
 	private String jobsearch_main;
 	private String user_id;
+	private String jobsearch_check;
 	
 	
 }

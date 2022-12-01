@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,7 @@ public class RecruiterController {
       JSONPObject json = new JSONPObject("JSON.parse", job_search);
       String jobsearch_main = om.writeValueAsString(json);
       vo.setJobsearch_main(jobsearch_main);
+      System.out.println("실행1");
       js.addJobSearch(vo);
       
       return res;
@@ -78,7 +80,6 @@ public class RecruiterController {
 		JobsearchVO vo = js.job_search_select(jobsearch_num);
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("JSON.parse", ""));
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
-		System.out.println(vo);
 		mo.addAttribute("js", vo);
 		return "/recruiter/Job_search_select";
 	}
@@ -94,6 +95,16 @@ public class RecruiterController {
 		mo.addAttribute("list",list);
 		
 	   return "/recruiter/Job_search_management";
+   }
+   
+   @RequestMapping("/jobsearch_delete")
+   public ResponseEntity<Integer> jobsearch_delete(int jobsearch_num) {
+	   return new ResponseEntity<>(js.jobsearch_delete(jobsearch_num), HttpStatus.OK);
+   }
+   
+   @RequestMapping("/jobsearch_public")
+   public ResponseEntity<Integer> jobsearch_public(int jobsearch_num) {
+	   return new ResponseEntity<>(js.jobsearch_public(jobsearch_num), HttpStatus.OK);
    }
    
    

@@ -21,7 +21,7 @@
    
    
      	 <tr style="font-size: 15pt; font: bold;">
-           <td class="col-5 border-bottom pt-3 "style="padding-bottom: 1%; padding-left: 3%">
+           <td class="col-4 border-bottom pt-3 "style="padding-bottom: 1%; padding-left: 3%">
               <strong class="text-gray-dark" style="margin-left: 2%;">제목</strong>
            </td>
 	       <td class="col-1 border-bottom pt-3" align="center">
@@ -40,7 +40,7 @@
               <label>근무지역</label>
 	       </td>
            <td class="col-1 border-bottom pt-3" align="center">
-            
+            	<label>공개여부</label>
            </td>
            <td class="col-1 border-bottom pt-3" align="center">
               
@@ -48,7 +48,7 @@
         </tr>
      <c:forEach var="list" items="${list }">
         <tr>
-           <td class="col-5 border-bottom pt-3 "style="padding-bottom: 1%; padding-left: 3%">
+           <td class="col-4 border-bottom pt-3 "style="padding-bottom: 1%; padding-left: 3%">
               <strong class="text-gray-dark" style="margin-left: 2%;">${list.jobsearch_title}</strong>
            </td>
 	       <td class="col-1 border-bottom pt-3" align="center">
@@ -86,11 +86,23 @@
               	$('label[id=${list.jobsearch_num }5]').text(data.work_place)
               </script>
 	       </td>
+	       <c:choose>
+	       	<c:when test="${list.jobsearch_check eq '1' }">
+		       	 <td class="col-1 border-bottom pt-3" align="center">
+	             	<a href="javascript:;"  onclick="jobsearch_public(${list.jobsearch_num});" style=" color: gray; padding-left: 25%;">공개</a>
+	          	 </td>
+	       	</c:when> 
+	       	<c:otherwise>
+	       		<td class="col-1 border-bottom pt-3" align="center">
+	             	<a href="javascript:;"  onclick="jobsearch_public(${list.jobsearch_num});" style=" color: gray; padding-left: 25%;">비공개</a>
+	          	</td>
+	       	</c:otherwise> 
+	       </c:choose>
            <td class="col-1 border-bottom pt-3" align="center">
             <a href="/recruiter/job_search_select?jobsearch_num=${list.jobsearch_num }" style=" color: gray; padding-left: 25%;">수정</a>
            </td>
            <td class="col-1 border-bottom pt-3" align="center">
-              <a href="javascript:;" onclick="" style="">삭제</a>
+              <a href="javascript:;" onclick="jobsearch_delete(${list.jobsearch_num});" style="">삭제</a>
            </td>
         </tr>
         </c:forEach>
@@ -100,3 +112,40 @@
    </div>
 
 <%@include file="../footer.jsp"%>
+<script>
+	function jobsearch_delete(js_num) {
+		
+		$.ajax({
+			url:"/recruiter/jobsearch_delete",
+			data : {"jobsearch_num":js_num},
+			type : 'POST',
+			dataType : 'json',
+			success: function(result) {
+				if(result==1){
+					alert("삭제되었습니다.")
+					location.reload()
+				}
+				
+			}
+			
+		});
+	}
+	
+	function jobsearch_public(js_num) {
+		console.log("실행")
+		$.ajax({
+			url:"/recruiter/jobsearch_public",
+			data : {"jobsearch_num":js_num},
+			type : 'POST',
+			dataType : 'json',
+			success: function(result) {
+				if(result==1){
+					alert("변경되었습니다.")
+					location.reload()
+				}
+			}
+			
+		});
+	}
+	
+</script>

@@ -16,4 +16,11 @@
 		select count(*) from tbl_user where user_id=#{user_id} and user_pw=#{user_pw} and user_check=#{user_check} 
 	</select>
 	
+	<select id="jobsearch_list" resultType="com.pjt.command.JobsearchVO">
+		select * from tbl_jobsearch where jobsearch_check = 1
+	</select>
+	
+	
+	
+	
 </mapper>

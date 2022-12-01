@@ -9,11 +9,9 @@
     </div>
   </div>
 
-   
-     
    <div class="my-3 p-3 bg-body rounded shadow-sm container">
    <div class="row">
-   		<h3 class="border-bottom pb-2 mb-0 col-11">등록된 구인공고</h3>
+   		<h3 class="border-bottom pb-2 mb-0 col-12">등록된 구인공고</h3>
    	</div>
    	<div class="row">
      <table>
@@ -86,10 +84,10 @@
               </script>
 	       </td>
            <td class="col-1 border-bottom pt-3" align="center">
-            <a href="/recruiter/job_search_select?jobsearch_num=${list.jobsearch_num }" style=" color: gray; padding-left: 25%;">수정</a>
+            <a href="/main/jobsearch_detaile?jobsearch_num=${list.jobsearch_num }" style=" color: gray; padding-left: 25%;">상세보기</a>
            </td>
            <td class="col-1 border-bottom pt-3" align="center">
-              <a href="javascript:;" onclick="" style="">삭제</a>
+              <a href="javascript:;" onclick="" style="">지원하기</a>
            </td>
         </tr>
         </c:forEach>
@@ -99,3 +97,7 @@
    </div>
 
 <%@include file="footer.jsp"%>
+
+<script>
+	
+</script>

@@ -77,7 +77,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="active" href="/main/home">Home</a></li>
-          <li><a href="/main/jobsearch_list">채용정보</a></li>
+          <li><a href="/main/job_search_list">채용정보</a></li>
           <li><a href="/main/resume_list">구인정보</a></li>
           
           
