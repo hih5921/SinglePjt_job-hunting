@@ -20,6 +20,9 @@
 		select * from tbl_jobsearch where jobsearch_check = 1
 	</select>
 	
+	<select id="resume_list" resultType="com.pjt.command.ResumeVO">
+		select * from tbl_resume where resume_num = (select tbl_mainresume.resume_num from tbl_mainresume)
+	</select>
 	
 	
 	

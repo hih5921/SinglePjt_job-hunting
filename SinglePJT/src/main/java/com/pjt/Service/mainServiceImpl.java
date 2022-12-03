@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pjt.Mapper.mainMapper;
 import com.pjt.command.JobsearchVO;
+import com.pjt.command.ResumeVO;
 import com.pjt.command.UserVO;
 
 @Service
@@ -36,5 +37,11 @@ public class mainServiceImpl implements mainService{
 	public List<JobsearchVO> jobsearch_list() {
 		
 		return mm.jobsearch_list();
+	}
+	
+	@Override
+	public List<ResumeVO> resume_list() {
+		
+		return mm.resume_list();
 	}
 }

@@ -112,12 +112,9 @@ public class JobhunterController {
 	public String job_search_select(Model mo, int resume_num) {
 		ResumeVO vo =rs.resumeSelect(resume_num);
 		Picture_ImgVO ivo =rs.getPicture(resume_num);
-		System.out.println(vo);
-		System.out.println(ivo);
 		vo.setResume_info(vo.getResume_info().replace("JSON.parse",""));
 		mo.addAttribute("re", vo);
-		mo.addAttribute("img", ivo);
-		System.out.println("실행완료");
+		mo.addAttribute("img", ivo);		
 		return "/jobhunter/Resume_select";
 	}
 	

@@ -16,7 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pjt.Service.jobsearchService;
 import com.pjt.Service.mainService;
+import com.pjt.Service.resumeService;
 import com.pjt.command.JobsearchVO;
+import com.pjt.command.Picture_ImgVO;
+import com.pjt.command.ResumeVO;
 import com.pjt.command.UserVO;
 
 import oracle.jdbc.proxy.annotation.Post;
@@ -30,6 +33,9 @@ public class mainController {
 	
 	@Autowired
 	jobsearchService js;
+	
+	@Autowired
+	resumeService rs;
 	
 	@RequestMapping("/home")
 	public String main() {
@@ -99,5 +105,27 @@ public class mainController {
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
 		mo.addAttribute("js", vo);
 		return "/jobsearch_detaile";
+	}
+	
+	@RequestMapping("/resume_list")
+	public String resume_list(HttpSession session, Model mo) {
+		List<ResumeVO> list =  ms.resume_list();
+		List<Picture_ImgVO> img_list = rs.getPicture_all();
+		for(int i=0;i<img_list.size();i++) {
+			img_list.get(i).setImg_uploadPath(img_list.get(i).getImg_uploadPath().replace("\\", "/"));			
+		}
+		mo.addAttribute("list",list);
+		mo.addAttribute("img_list",img_list);
+		return "/resume_list";
+	}
+	
+	@RequestMapping("/resume_detaile")
+	public String resume_detaile(int resume_num,Model mo) {
+		ResumeVO vo =rs.resumeSelect(resume_num);
+		Picture_ImgVO ivo =rs.getPicture(resume_num);
+		vo.setResume_info(vo.getResume_info().replace("JSON.parse",""));
+		mo.addAttribute("re", vo);
+		mo.addAttribute("img", ivo);		
+		return "/Resume_detaile";
 	}
 }
