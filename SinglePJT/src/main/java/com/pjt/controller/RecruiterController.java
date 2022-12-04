@@ -21,7 +21,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.pjt.Service.jobsearchService;
+import com.pjt.Service.resumeService;
 import com.pjt.command.JobsearchVO;
+import com.pjt.command.Picture_ImgVO;
+import com.pjt.command.ResumeVO;
 
 
 @Controller
@@ -30,6 +33,9 @@ public class RecruiterController {
    
 	@Autowired
 	jobsearchService js;
+	
+	@Autowired
+	resumeService rs ;
 	
 	
    @GetMapping("/job_search")
@@ -47,7 +53,6 @@ public class RecruiterController {
       JSONPObject json = new JSONPObject("JSON.parse", job_search);
       String jobsearch_main = om.writeValueAsString(json);
       vo.setJobsearch_main(jobsearch_main);
-      System.out.println("실행1");
       js.addJobSearch(vo);
       
       return res;
@@ -58,13 +63,11 @@ public class RecruiterController {
    public ResponseEntity<Integer> job_search_modify(@RequestBody Map<String, Object> job_search ,JobsearchVO jvo) throws JsonProcessingException {
       ResponseEntity<Integer> res=null;
       JobsearchVO vo = jvo;
-      System.out.println("수정"+jvo);
       ObjectMapper om = new ObjectMapper();
       JSONPObject json = new JSONPObject("JSON.parse", job_search);
       String jobsearch_main = om.writeValueAsString(json);
       vo.setJobsearch_main(jobsearch_main);
       js.modifyJobSearch(vo);
-      System.out.println("실행"+vo);
       return res;
    }
    
@@ -106,6 +109,19 @@ public class RecruiterController {
    public ResponseEntity<Integer> jobsearch_public(int jobsearch_num) {
 	   return new ResponseEntity<>(js.jobsearch_public(jobsearch_num), HttpStatus.OK);
    }
+   
+	//지원 이력서 확인
+	@RequestMapping("/accept_management")
+	public String accept_management(Model mo,HttpSession session) {
+		List<Picture_ImgVO> img_list = rs.getPicture_all();
+		for(int i=0;i<img_list.size();i++) {
+			img_list.get(i).setImg_uploadPath(img_list.get(i).getImg_uploadPath().replace("\\", "/"));
+						
+		}
+		mo.addAttribute("img_list",img_list);
+		mo.addAttribute("list", js.acceptlist((String)session.getAttribute("user_id"))); 
+		return "/recruiter/accept_management";
+	}
    
    
 }

@@ -31,5 +31,21 @@
 		select jobsearch_check from tbl_jobsearch where jobsearch_num= #{jobsearch_num}
 	</select>
 	
+	<select id="acceptlist"  resultType="com.pjt.command.AcceptVO">
+		select * from tbl_accept where user_id = #{user_id}
+	</select>
+	
+	<select id="getResumenum" resultType="com.pjt.command.ResumeVO">
+		select * from tbl_resume where resume_num =(select resume_num from tbl_mainresume where mainresume_num = #{mainresume_num})
+	</select>
+	
+	<select id="getJobsearch" resultType="com.pjt.command.JobsearchVO">
+		select * from tbl_jobsearch where jobsearch_num = (select jobsearch_num from tbl_accept WHERE mainresume_num=(select mainresume_num from tbl_mainresume where user_id =#{user_id}))	
+	</select>
+	
+	<delete id="deleteAccept">
+		delete from tbl_accept where jobsearch_num = #{jobsearch_num}
+	</delete>
+	
 </mapper>
 

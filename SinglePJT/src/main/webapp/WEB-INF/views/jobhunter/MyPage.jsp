@@ -39,7 +39,7 @@
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-star"></i></div>
-              <h4><a href="">즐겨찾기</a></h4>
+              <h4><a href="/jobhunter/accept_list">지원공고</a></h4>
             </div>
           </div>
 

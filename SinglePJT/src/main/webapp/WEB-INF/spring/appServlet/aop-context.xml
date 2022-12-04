@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<context:component-scan base-package="com.pjt.util" /> 
+ 
+<interceptors>
+	<interceptor>
+		<mapping path="/jobhunter/mypage"/>
+		<mapping path="/main/info"/>
+		<mapping path="/jobhunter/resume_management"/>
+		<mapping path="/recruiter/job_search_management"/>
+		<mapping path="/recruiter/accept_management"/>
+		<mapping path="/recruiter/job_search"/>
+		<mapping path="/recruiter/job_search_select"/>
+		<mapping path="/jobhunter/resume"/>
+		<mapping path="/jobhunter/resume_select"/>
+		<beans:bean class="com.pjt.util.LoginInterceptor"></beans:bean>
+	</interceptor>
+</interceptors>
+
+<aop:aspectj-autoproxy />
+
+</beans:beans>

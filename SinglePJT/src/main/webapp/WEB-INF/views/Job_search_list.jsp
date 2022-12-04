@@ -86,9 +86,21 @@
            <td class="col-1 border-bottom pt-3" align="center">
             <a href="/main/jobsearch_detaile?jobsearch_num=${list.jobsearch_num }" style=" color: gray; padding-left: 25%;">상세보기</a>
            </td>
-           <td class="col-1 border-bottom pt-3" align="center">
-              <a href="javascript:;" onclick="" style="">지원하기</a>
-           </td>
+           <c:choose>
+	           <c:when test="${sessionScope.user_check eq '1' }">
+		           <td class="col-1 border-bottom pt-3" align="center">
+		              <a href="javascript:;" onclick="accept(${list.jobsearch_num})" style="">지원하기</a>
+		           </td>
+	           </c:when>
+	           
+	           <c:otherwise>
+	           		<td class="col-1 border-bottom pt-3" align="center">
+		              <a href="javascript:;" onclick="" style=""></a>
+		           </td>
+	           </c:otherwise>
+           </c:choose>
+           
+           
         </tr>
         </c:forEach>
      </table>
@@ -99,5 +111,27 @@
 <%@include file="footer.jsp"%>
 
 <script>
+function accept(jobsearch_num) {
+	
+	if(confirm("해당 공고에 지원하시겠습니까?\n(지원 시 대표이력서가 게시글 작성자에게 전달됩니다.)")){
+		$.ajax({
+			url:"/main/accept",
+			data:{"user_id":"${sessionScope.user_id}","jobsearch_num":jobsearch_num},
+			datatype:"json",
+			type:"post",
+			success : function(result) {
+				console.log(result)
+				if(result=="-1"){
+					alert("이미 지원한 공고입니다.")
+				}else if(result=="1"){
+					alert("공고 지원이 완료되었습니다.")
+				}else{
+					alert("대표이력서를 확인해주세요.")
+				}
+			}
+		})
+	}
+	
+}
 	
 </script>

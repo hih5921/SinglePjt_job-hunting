@@ -35,7 +35,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.pjt.Service.jobsearchService;
 import com.pjt.Service.resumeService;
+import com.pjt.command.JobsearchVO;
 import com.pjt.command.MainResumeVO;
 import com.pjt.command.Picture_ImgVO;
 import com.pjt.command.ResumeVO;
@@ -48,6 +50,9 @@ public class JobhunterController {
 
 	@Autowired
 	resumeService rs;
+	
+	@Autowired
+	jobsearchService js;
 	
 	@GetMapping("/resume")
 	public String jh_resume() {
@@ -129,11 +134,29 @@ public class JobhunterController {
 	//대표이력서 등록
 	@RequestMapping("/mainresume")
 	public ResponseEntity<Integer> mainResume(MainResumeVO vo){
-		System.out.println("ctrl"+vo);
 		ResponseEntity<Integer> res = new ResponseEntity<Integer> (rs.mainresume(vo), HttpStatus.OK);
 		return res;
 	}
 	
+	
+	@RequestMapping("/accept_list")
+	public String getjobsearch(Model mo,HttpSession session) {
+		String user_id =  (String)session.getAttribute("user_id");
+		List<JobsearchVO> list = js.getJobsearch(user_id);
+		for(JobsearchVO vo : list) {
+			vo.setJobsearch_main(vo.getJobsearch_main().replace("JSON.parse", ""));
+			vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
+		}
+		mo.addAttribute("list",list);
+		return "/jobhunter/accept_list";
+	}
+	
+	@RequestMapping("/delete")
+	public ResponseEntity<String> deleteaccept(int jobsearch_num) {
+		
+		return ResponseEntity.ok(js.deleteAccept(jobsearch_num)+"");
+	}
+
 	
 	// 등록한 파일 폴더에 저장
 		@PostMapping(value = "uploadFile", produces = MediaType.APPLICATION_JSON_VALUE)

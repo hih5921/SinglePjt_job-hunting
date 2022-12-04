@@ -23,7 +23,7 @@
      
    <div class="my-3 p-3 bg-body rounded shadow-sm container">
    <div class="row">
-   		<h3 class="border-bottom pb-2 mb-0 col-12">내 이력서</h3>
+   		<h3 class="border-bottom pb-2 mb-0 col-12">공개된 이력서</h3>
    		
    	</div>
    <c:forEach var="list" items="${list }">
@@ -37,9 +37,6 @@
 	        	<c:choose>
 		        	<c:when test="${img_list.resume_num eq list.resume_num }">	        	        
 			            <script>
-			            	console.log("${img_list.resume_num}")
-			            	console.log("${img_list.img_uploadPath}")
-			            	
 			            	$("#${list.resume_num }").attr("src","/img/${img_list.img_uploadPath}/${img_list.img_uuid}_${img_list.img_fileName}");
 			            </script>			    	    
 			        </c:when>

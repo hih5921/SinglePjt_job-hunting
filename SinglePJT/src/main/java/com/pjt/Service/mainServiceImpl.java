@@ -44,4 +44,16 @@ public class mainServiceImpl implements mainService{
 		
 		return mm.resume_list();
 	}
+	
+	@Override
+	public int accept(int jobsearch_num, String user_id) {
+		String js =mm.getid(jobsearch_num);
+		int mainresume = mm.getresume(user_id);
+		int test = mm.acceptcheck(js, mainresume);
+		if(test>0) {
+			return -1;
+		}
+		int res = mm.accept(js, mainresume,jobsearch_num);
+		return res;
+	}
 }

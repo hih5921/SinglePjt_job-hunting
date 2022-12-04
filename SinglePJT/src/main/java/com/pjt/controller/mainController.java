@@ -128,4 +128,14 @@ public class mainController {
 		mo.addAttribute("img", ivo);		
 		return "/Resume_detaile";
 	}
+	
+	@RequestMapping("/accept")
+	public ResponseEntity<String> accept(String user_id,int jobsearch_num){
+		ResponseEntity<String> res = new ResponseEntity<String>(ms.accept(jobsearch_num, user_id)+"",HttpStatus.OK);
+		
+		return res;  
+	}
+	
+	
+	
 }

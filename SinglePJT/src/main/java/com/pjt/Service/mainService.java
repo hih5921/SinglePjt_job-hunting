@@ -12,6 +12,7 @@ public interface mainService {
 	public int login(UserVO vo);
 	public List<JobsearchVO> jobsearch_list();
 	public List<ResumeVO> resume_list();
+	public int accept(int jobsearch_num,String user_id);
 	
 	
 }

@@ -39,7 +39,7 @@
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bxs-contact"></i></div>
-              <h4><a href="">지원현황</a></h4>
+              <h4><a href="/recruiter/accept_management">지원현황</a></h4>
             </div>
           </div>
 

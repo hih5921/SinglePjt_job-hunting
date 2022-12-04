@@ -94,6 +94,7 @@
 	            type : 'POST',
 	            dataType : 'json',
 	            success: function(result) {
+	            	console.log(result)
 	               if(result>0){
 	               	alert("대표이력서로 설정되었습니다.");
 	               }

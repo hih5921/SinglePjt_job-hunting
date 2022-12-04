@@ -24,6 +24,21 @@
 		select * from tbl_resume where resume_num = (select tbl_mainresume.resume_num from tbl_mainresume)
 	</select>
 	
+	<select id="getid" resultType="String">
+		select user_id from tbl_jobsearch where jobsearch_num=#{jobsearch_num}
+	</select>
+	
+	<select id="getresume" resultType="int">
+		select mainresume_num from tbl_mainresume where user_id = #{user_id}
+	</select>
+	
+	<select id="acceptcheck" resultType="int">
+		select count(*) from tbl_accept where mainresume_num = #{mainresume_num} and user_id = #{user_id}
+	</select>
+	
+	<insert id="accept" >
+		insert into tbl_accept(mainresume_num,user_id,jobsearch_num) values(#{mainresume_num},#{user_id},#{jobsearch_num})
+	</insert>
 	
 	
 </mapper>
