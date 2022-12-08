@@ -81,6 +81,11 @@ public class RecruiterController {
    @RequestMapping("/job_search_select")
 	public String job_search_select(Model mo,int jobsearch_num) {
 		JobsearchVO vo = js.job_search_select(jobsearch_num);
+		if(vo.getJobsearch_main3()!=null) {
+			vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2()+vo.getJobsearch_main3());
+		}else if(vo.getJobsearch_main2() !=null ) {
+			vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2());
+		}
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("JSON.parse", ""));
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
 		mo.addAttribute("js", vo);

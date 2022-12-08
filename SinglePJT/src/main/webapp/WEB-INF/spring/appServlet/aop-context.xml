@@ -22,6 +22,7 @@
 		<mapping path="/recruiter/job_search_select"/>
 		<mapping path="/jobhunter/resume"/>
 		<mapping path="/jobhunter/resume_select"/>
+		<mapping path="/main/info"/>
 		<beans:bean class="com.pjt.util.LoginInterceptor"></beans:bean>
 	</interceptor>
 </interceptors>

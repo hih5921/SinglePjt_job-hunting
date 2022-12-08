@@ -56,4 +56,36 @@ public class mainServiceImpl implements mainService{
 		int res = mm.accept(js, mainresume,jobsearch_num);
 		return res;
 	}
+	
+	@Override
+	public UserVO myinfo(String user_id) {
+		
+		return mm.myinfo(user_id);
+	}
+	
+	@Override
+	public int pwcheck(String user_id, String user_pw) {
+		
+		return mm.pwcheck(user_id, user_pw);
+	}
+	
+	@Override
+	public void updatepw(String user_id, String user_pw) {
+		mm.updatepw(user_id, user_pw);
+		
+	}
+	
+	@Override
+	public void updateinfo(UserVO vo) {
+		mm.updateinfo(vo);
+		
+	}
+	
+	@Override
+	public int deleteUser(String user_id) {
+		
+		return mm.deleteUser(user_id);
+	}
+	
+	
 }

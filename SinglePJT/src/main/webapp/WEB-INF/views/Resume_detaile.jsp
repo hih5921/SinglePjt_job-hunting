@@ -43,10 +43,7 @@
             <label class="col-1" style="border: 2px solid #888; width:10%;">주소</label>
             <input type="text" class="col-7 bg-light" style="border: 2px solid #888; width:70%;"id="address" name="address"/>
          </div>
-         
-         <div  style="  float:left; align-items: center;  padding-left: 8px;">
-	       	<label class="input-file-button small" for="input-file">사진첨부<input type="file" id="input-file" style="display: none" name="uploadFile" /></label>
-	    </div>
+
 	    
          <br><br>
          <p style="margin-bottom: 0px; margin-left: 10px;">□ 병역사항(해당자기재)</p>

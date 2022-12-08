@@ -20,4 +20,9 @@ public interface mainMapper {
 	public int getresume(String user_id);
 	public int accept(@Param("user_id")String user_id, @Param("mainresume_num")int mainresume_num,@Param("jobsearch_num")int jobsearch_num);
 	public int acceptcheck(@Param("user_id")String user_id, @Param("mainresume_num")int mainresume_num);
+	public UserVO myinfo(String user_id);
+	public int pwcheck(@Param("user_id") String user_id,@Param("user_pw") String user_pw);
+	public void updatepw(@Param("user_id") String user_id,@Param("user_pw") String user_pw);
+	public void updateinfo(UserVO vo);
+	public int deleteUser(String user_id);
 }

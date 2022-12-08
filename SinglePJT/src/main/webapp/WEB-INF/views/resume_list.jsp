@@ -48,9 +48,20 @@
            <td class="col-1 border-bottom pt-3" align="center">
             <a href="/main/resume_detaile?resume_num=${list.resume_num }" style=" color: gray; padding-left: 25%;">상세보기</a>
            </td>
-           <td class="col-1 border-bottom pt-3" align="center">
-              <a href="javascript:;" onclick=";" style="">공고제의</a>
-           </td>
+           <c:choose>
+           	<c:when test="">
+	           	<td class="col-1 border-bottom pt-3" align="center">
+	              <a href="javascript:;" onclick=";" style="">공고제의</a>
+	           	</td>	
+           	</c:when>
+           	<c:otherwise>
+           		<td class="col-1 border-bottom pt-3" align="center">
+	              
+	           	</td>
+           	</c:otherwise>
+           </c:choose>
+           
+           
         </tr>
      </table>
      </div>

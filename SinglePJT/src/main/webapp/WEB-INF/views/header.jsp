@@ -51,9 +51,21 @@
   <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
+      
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">jihnge11@gmail.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>010-8770-5921</span></i>
+      	<c:choose>
+      	<c:when test="${!empty sessionScope.user_id }">
+	      	<i class="bi bi-file-person-fill d-flex align-items-center"><a href="/main/info">${sessionScope.user_id }</a></i>
+	        <c:choose>
+	        <c:when test="${sessionScope.user_check eq '1' }">
+	        	<i class="bi bi-person-fill d-flex align-items-center ms-4"><span>구직자</span></i>
+	        </c:when>
+		    <c:otherwise>
+		        <i class="bi bi-people-fill d-flex align-items-center ms-4"><span>구인자</span></i>
+		    </c:otherwise>
+	        </c:choose>
+      	</c:when>
+      	</c:choose>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -85,9 +97,9 @@
 	          <c:when test="${sessionScope.user_check eq '1' }">
 		          <li class="dropdown"><a href="/jobhunter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
 		            <ul>
-		              <li><a href="/jobhunter/j_info">내정보</a></li>
+		              <li><a href="/main/info">내정보</a></li>
 		              <li><a href="/jobhunter/resume_management">이력서 관리</a></li>
-		              <li><a href="#">즐겨찾기</a></li>
+		              <li><a href="/jobhunter/accept_list">지원공고</a></li>
 		            </ul>
 		          </li>
 	          </c:when>
@@ -95,9 +107,9 @@
 	           <c:when test="${sessionScope.user_check eq '2' }">
 		          <li class="dropdown"><a href="/recruiter/mypage"><span>마이페이지</span> <i class="bi bi-chevron-down"></i></a>
 		            <ul>
-		              <li><a href="/recruiter/r_info">내정보</a></li>
-		              <li><a href="/recruiter/jobsearch_management">업체정보</a></li>
-		              <li><a href="#">즐겨찾기</a></li>
+		              <li><a href="/main/info">내정보</a></li>
+		              <li><a href="/recruiter/job_search_management">구인공고관리</a></li>
+		              <li><a href="/recruiter/accept_management">지원현황</a></li>
 		            </ul>
 		          </li>
 	          </c:when>

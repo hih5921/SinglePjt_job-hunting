@@ -17,11 +17,11 @@
 	</select>
 	
 	<select id="jobsearch_list" resultType="com.pjt.command.JobsearchVO">
-		select * from tbl_jobsearch where jobsearch_check = 1
+		select * from tbl_jobsearch where jobsearch_check = 1 order by jobsearch_num desc 
 	</select>
 	
 	<select id="resume_list" resultType="com.pjt.command.ResumeVO">
-		select * from tbl_resume where resume_num = (select tbl_mainresume.resume_num from tbl_mainresume)
+		select * from tbl_resume where resume_num in (select tbl_mainresume.resume_num from tbl_mainresume) order by resume_num desc
 	</select>
 	
 	<select id="getid" resultType="String">
@@ -40,5 +40,23 @@
 		insert into tbl_accept(mainresume_num,user_id,jobsearch_num) values(#{mainresume_num},#{user_id},#{jobsearch_num})
 	</insert>
 	
+	<select id="myinfo" resultType="com.pjt.command.UserVO">
+		select * from tbl_user where user_id=#{user_id}
+	</select>
 	
+	<select id="pwcheck" resultType="int">
+		select count(*) from tbl_user where user_id=#{user_id} and user_pw=#{user_pw}
+	</select>
+	
+	<update id="updatepw">
+		update tbl_user set user_pw =#{user_pw} where user_id=#{user_id}
+	</update>
+	
+	<update id="updateinfo">
+		update tbl_user set user_name=#{user_name}, user_email=#{user_email} where user_id=#{user_id}
+	</update>
+	
+	<delete id="deleteUser">
+		delete from tbl_user where user_id=#{user_id}
+	</delete>
 </mapper>

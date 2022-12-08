@@ -53,19 +53,7 @@
                      <th><label>담당업무</label></th>
                      <th><label>자격요건 및 우대사항</label></th>
                   </tr>
-                  <tr>
-                     <td >
-                        <textarea rows="5" cols="20"></textarea>
-                     </td>
-
-                     <td>
-                        <textarea rows="5" cols="30"></textarea>
-                     </td>
-
-                     <td>
-                        <textarea rows="5" cols="30"></textarea>
-                     </td>
-                  </tr>
+                  
                </table>
                <br><br><br>
                <label><h3>접수기간 및 방법</h3></label><br>

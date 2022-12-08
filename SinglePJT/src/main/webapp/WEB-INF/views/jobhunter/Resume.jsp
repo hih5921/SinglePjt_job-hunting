@@ -309,13 +309,25 @@ function test() {
 			
 	}
 	let resume_title = $('h1[id="resume_title"]').html()
-	let user_id = ${sessionScope.user_id}
+	let user_id = "${sessionScope.user_id}"
+	
+	
 	var img_fileName = $('input[name="imageList[0].img_fileName"]').val()
 	var img_uuid = $('input[name="imageList[0].img_uuid"]').val()
 	var img_uploadPath = $('input[name="imageList[0].img_uploadPath"]').val()
-	console.log(img_fileName)
-	console.log(img_uuid)
-	console.log(img_uploadPath)
+	
+	if(img_fileName == undefined){
+		$.ajax({
+	        url: "/jobhunter/resume?&resume_title="+resume_title
+	        +"&user_id="+user_id,
+	        type:"post",
+	        data:JSON.stringify( resume_info ),
+	        contentType : "application/json; charset=UTF-8"
+		 }).done(function(data) { 
+			location.href="/jobhunter/mypage/";  
+	      })
+	}else{
+	
 	$.ajax({
         url: "/jobhunter/resume?&resume_title="+resume_title
         +"&user_id="+user_id
@@ -330,7 +342,8 @@ function test() {
 		location.href="/jobhunter/mypage/";  
     	 
         
-      });   
+      })
+	}
 	console.log(resume_info)
 }
 

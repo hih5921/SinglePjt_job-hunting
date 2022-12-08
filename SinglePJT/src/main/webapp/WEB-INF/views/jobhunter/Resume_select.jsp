@@ -308,7 +308,6 @@ function modify() {
 				m_depa:$('input[name="m_depa"]').val(),
 				m_period:$('input[name="m_period"]').val()
 			},
-			
 			s_info:[
 				{
 					s_period:$('input[name="s_period1"]').val(),
@@ -400,10 +399,22 @@ function modify() {
 	}
 	
 	let resume_title = $('h1[id="resume_title"]').html()
-	let user_id = "test1"
+	let user_id = "${sessionScope.user_id}"
 	var img_fileName = $('input[name="imageList[0].img_fileName"]').val()
 	var img_uuid = $('input[name="imageList[0].img_uuid"]').val()
 	var img_uploadPath = $('input[name="imageList[0].img_uploadPath"]').val()
+	if(img_fileName == undefined){
+		$.ajax({
+			url: "/jobhunter/resume_modify/?&resume_title="+resume_title
+	        +"&user_id="+user_id
+	        +"&resume_num="+${param.resume_num},
+	        type:"post",
+	        data:JSON.stringify( resume_info ),
+	        contentType : "application/json; charset=UTF-8"
+		 }).done(function(data) { 
+			location.href="/jobhunter/mypage/";  
+	      })
+	}else{
 	$.ajax({
         url: "/jobhunter/resume_modify/?&resume_title="+resume_title
         +"&user_id="+user_id
@@ -416,11 +427,9 @@ function modify() {
         contentType : "application/json; charset=UTF-8"
         
       }).done(function(data) {
-     	 console.log("실행1")
 			location.href="/jobhunter/mypage/";  
-     	 console.log("실행2")
-      });   
-	console.log(resume_info)
+      });
+	}	
 }
 
 

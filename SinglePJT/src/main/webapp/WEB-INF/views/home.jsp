@@ -16,8 +16,8 @@
           <div class="carousel-item active" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/slide/1.png)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown"><span>LS ITC 인턴 모집</span></h2>
-                <h4 class="animate__animated animate__fadeInUp" align="left">최고의 전문가 집단 <br>22년 채용 연계형 <br>인턴 모집<br><br> OO/OO ~ OO/OO</h4>
+                <h2 class="animate__animated fanimate__adeInDown">[넥슨]<span> 메이플스토리 유니버스</span></h2>
+                <p class="animate__animated animate__fadeInUp">글로벌 블록체인 커뮤니티의 일원이 되겠다는 것을 목표로 합니다.</p>
                 <a href="" class="btn-get-started animate__animated animate__fadeInUp">바로가기</a>
               </div>
             </div>
@@ -27,8 +27,8 @@
           <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/slide/2.png)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animate__animated fanimate__adeInDown">카카오 <span>기술 직군 모집</span></h2>
+                <p class="animate__animated animate__fadeInUp">'새로운 연결, 더 나은 세상'을 만드는 카카오에서 <br>기술  분야 크루를 모집합니다.<br>세상의 문제를 새로운 시각과 방식으로 해결하고, 충분한 권한과 책임을 받아 신나게 일하고 싶은 인재를 기다립니다.</p>
                 <a href="" class="btn-get-started animate__animated animate__fadeInUp">바로가기</a>
               </div>
             </div>
@@ -38,8 +38,10 @@
           <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/slide/3.png)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animate__animated fanimate__adeInDown">[LINE PLUS] <span>Corporate Culture</span></h2>
+                <p class="animate__animated animate__fadeInUp">Culture Communications 팀은 LINE의 핵심 가치인 LINE STYLE을 모든 LINERs와 공유하고, 각자의 일하는 방식에 적용할 수 있도록 돕습니다.
+또한, 변화하는 환경에 맞추어 LINERs에게 필요한 정보 전달, 콘텐츠 공유, 네트워크 확보 등을 위한 다양한 커뮤니케이션 채널을 기획하고 운영합니다.
+이와 더불어, 글로벌 법인(일본, 태국, 대만, 인도네시아 등)간 연계가 필요한 Agenda의 Communication Hub 역할을 하며 LINE만의 문화를 주도해서 만들어 나갈 분을 찾습니다.</p>
                 <a href="" class="btn-get-started animate__animated animate__fadeInUp">바로가기</a>
               </div>
             </div>
@@ -49,8 +51,8 @@
           <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/slide/4.png)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animate__animated fanimate__adeInDown">(HR, Finance, Legal, CES, CLS 등) <span>경영지원 대규모 채용</span></h2>
+                <p class="animate__animated animate__fadeInUp">쿠팡의 모든 직원은 커머스의 미래를 만들겠다는 쿠팡의 미션에 진심입니다.<br>우리는 고객의 문제를 해결해 나가고, 전통적인 관념과 통념에 맞서며 <br>실현 가능한 한계를 뛰어넘고 있습니다.<br>고가용성과 최첨단의 앞선 기술, 초연결사회에서의<br>놀라운 업무 경험을 원하신다면 지금 바로 쿠팡에 합류하세요 !</p>
                 <a href="" class="btn-get-started animate__animated animate__fadeInUp">바로가기</a>
               </div>
             </div>
@@ -60,8 +62,8 @@
           <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/slide/5.png)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <h2 class="animate__animated fanimate__adeInDown">[B-Robotics] <span> 각 부문별 인재영입</span></h2>
+                <p class="animate__animated animate__fadeInUp">B-Robotics 에서<br>새로운 미래를 함께 만들어 갈 동료를 찾습니다!</p>
                 <a href="" class="btn-get-started animate__animated animate__fadeInUp">바로가기</a>
               </div>
             </div>
@@ -92,7 +94,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>제휴사</h2>
+          <h2>고객사</h2>
         </div>
 
         <div class="clients-slider swiper">

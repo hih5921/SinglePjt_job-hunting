@@ -19,10 +19,18 @@ public class jobsearchServiceImpl implements jobsearchService {
 	
 	@Override
 	public void addJobSearch(JobsearchVO vo) {
-		System.out.println("서비스 실행"+vo);
-		jm.addJobSearch(vo);
-		System.out.println("서비스 완료");
 		
+		if(vo.getJobsearch_main().getBytes().length>3500 & vo.getJobsearch_main().getBytes().length<7000) {
+			String subString =vo.getJobsearch_main();
+			vo.setJobsearch_main(subString.substring(0, 1300));
+			vo.setJobsearch_main2(subString.substring(1301, subString.length()));
+		}else if(vo.getJobsearch_main().getBytes().length>7000 ) {
+			String subString =vo.getJobsearch_main();
+			vo.setJobsearch_main(subString.substring(0, 1300));
+			vo.setJobsearch_main2(subString.substring(1301, 2600));
+			vo.setJobsearch_main3(subString.substring(2601, subString.length()));
+		}
+		jm.addJobSearch(vo);		
 	}
 	
 	@Override
@@ -39,7 +47,21 @@ public class jobsearchServiceImpl implements jobsearchService {
 	
 	@Override
 	public void modifyJobSearch(JobsearchVO vo) {
-		
+		System.out.println(vo.getJobsearch_main().getBytes().length);
+		if(vo.getJobsearch_main().getBytes().length>3500 & vo.getJobsearch_main().getBytes().length<7000) {
+			String subString =vo.getJobsearch_main();
+			vo.setJobsearch_main(subString.substring(0, 2000));
+			vo.setJobsearch_main2(subString.substring(2001, subString.length()));
+		}else if(vo.getJobsearch_main().getBytes().length>7000 ) {
+			String subString =vo.getJobsearch_main();
+			vo.setJobsearch_main(subString.substring(0, 2000));
+			vo.setJobsearch_main2(subString.substring(2001, 4000));
+			vo.setJobsearch_main3(subString.substring(4001, subString.length()));
+			System.out.println(vo.getJobsearch_main().getBytes().length);
+			System.out.println(vo.getJobsearch_main2().getBytes().length);
+			System.out.println(vo.getJobsearch_main3().getBytes().length);
+			
+		}
 		jm.modifyJobSearch(vo);
 	}
 	

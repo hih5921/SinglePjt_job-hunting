@@ -64,7 +64,7 @@ public class mainController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "home";
+		return "redirect:/main/home";
 	}
 	
 	@GetMapping("/register")
@@ -91,6 +91,11 @@ public class mainController {
 	public String job_search_list(Model mo) {
 		List<JobsearchVO> list = ms.jobsearch_list();
 		for(JobsearchVO vo : list) {
+			if(vo.getJobsearch_main3()!=null) {
+				vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2()+vo.getJobsearch_main3());
+			}else if(vo.getJobsearch_main2() !=null ) {
+				vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2());
+			}
 			vo.setJobsearch_main(vo.getJobsearch_main().replace("JSON.parse", ""));
 			vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
 		}
@@ -101,6 +106,11 @@ public class mainController {
 	@RequestMapping("/jobsearch_detaile")
 	public String jobsearch_detaile(int jobsearch_num, Model mo) {
 		JobsearchVO vo = js.job_search_select(jobsearch_num);
+		if(vo.getJobsearch_main3()!=null) {
+			vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2()+vo.getJobsearch_main3());
+		}else if(vo.getJobsearch_main2() !=null ) {
+			vo.setJobsearch_main(vo.getJobsearch_main()+vo.getJobsearch_main2());
+		}
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("JSON.parse", ""));
 		vo.setJobsearch_main(vo.getJobsearch_main().replace("\\n", ""));
 		mo.addAttribute("js", vo);
@@ -136,6 +146,35 @@ public class mainController {
 		return res;  
 	}
 	
+	@RequestMapping("/info")
+	public String info(Model mo,HttpSession session) {
+		mo.addAttribute("info", ms.myinfo((String)session.getAttribute("user_id")));
+		return "/myinfo";
+	}
 	
+
+	@RequestMapping("pwcheck")
+	public ResponseEntity<String> pwcheck(String user_id,String user_pw){
+
+		return ResponseEntity.ok(ms.pwcheck(user_id, user_pw)+"");
+	}
+	
+	@RequestMapping("updatepw")
+	public ResponseEntity<String> updatepw(String user_id,String user_pw){
+		ms.updatepw(user_id, user_pw);
+		return ResponseEntity.ok("");
+	}
+	
+	@RequestMapping("updateinfo")
+	public ResponseEntity<String> updateinfo(UserVO vo){
+		ms.updateinfo(vo);
+		return ResponseEntity.ok("");
+	}
+	
+	@RequestMapping("/deleteUser")
+	public ResponseEntity<String> deleteUser(String user_id) {
+		
+		return ResponseEntity.ok(ms.deleteUser(user_id)+"");
+	}
 	
 }

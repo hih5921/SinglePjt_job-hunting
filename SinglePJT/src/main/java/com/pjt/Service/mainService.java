@@ -13,6 +13,9 @@ public interface mainService {
 	public List<JobsearchVO> jobsearch_list();
 	public List<ResumeVO> resume_list();
 	public int accept(int jobsearch_num,String user_id);
-	
-	
+	public UserVO myinfo(String user_id);
+	public int pwcheck(String user_id,String user_pw);
+	public void updatepw(String user_id,String user_pw);
+	public void updateinfo(UserVO vo);
+	public int deleteUser(String user_id);
 }

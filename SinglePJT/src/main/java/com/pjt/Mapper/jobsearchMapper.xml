@@ -16,7 +16,18 @@
 	</select>
 	
 	<update id="modifyJobSearch">
-		update tbl_jobsearch set jobsearch_title=#{jobsearch_title},jobsearch_main=#{jobsearch_main} where jobsearch_num = #{jobsearch_num}
+		update tbl_jobsearch set jobsearch_title=#{jobsearch_title},
+		<choose>
+			<when test="jobsearch_main3 != null">
+				jobsearch_main=#{jobsearch_main},jobsearch_main2=#{jobsearch_main2},jobsearch_main3=#{jobsearch_main3} where jobsearch_num = #{jobsearch_num}		
+			</when>
+			<when test="jobsearch_main2 != null">
+				jobsearch_main=#{jobsearch_main},jobsearch_main2=#{jobsearch_main2} where jobsearch_num = #{jobsearch_num}		
+			</when>
+			<otherwise>
+				jobsearch_main=#{jobsearch_main} where jobsearch_num = #{jobsearch_num}
+			</otherwise>
+		</choose>
 	</update>
 	
 	<delete id="jobsearch_delete">
